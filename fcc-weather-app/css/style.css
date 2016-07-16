@@ -1,0 +1,79 @@
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/css/weather-icons-wind.css");
+
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/css/weather-icons-wind.min.css");
+
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/css/weather-icons.css");
+
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/css/weather-icons.min.css");
+
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/font/weathericons-regular-webfont.eot");
+
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/font/weathericons-regular-webfont.svg");
+
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/font/weathericons-regular-webfont.ttf");
+
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/font/weathericons-regular-webfont.woff");
+
+@import url("https://dl.dropboxusercontent.com/u/12474798/weather-icons-css/font/weathericons-regular-webfont.woff2");
+
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+@import url(https://fonts.googleapis.com/css?family=Kaushan+Script);
+
+body{
+    background-repeat:repeat;
+    background-size: cover;
+}
+
+#unitsButton{
+    padding-top: 15px;
+    padding-right: 15px;
+    position:absolute;
+    top:0;
+    right:0;
+    font-family: 'Raleway';
+}
+
+#locationInfo{
+    padding-bottom: 15px;
+    position: fixed;
+    bottom: 0;
+    text-align: left;
+    width: 100%;
+}
+
+i{
+    color:black;
+    font-size: 2.5em;    
+}
+
+h1{
+    padding-top: 70px;
+    font-family: 'Kaushan Script';
+    color:black;
+}
+
+#weatherInfo{
+    padding-top: 60px;
+    font-size: 1.5em;
+}
+
+#windInfo{
+    padding-top: 40px;
+    font-size: 1.5em;
+}
+#temp{
+    padding-top:20px;
+}
+#temp, #wid, #windDir, #windSpeed{
+    font-family: 'Raleway';
+    color: black;
+    font-weight: bold;
+    
+}
+
+#country, #time{
+    font-family: 'Raleway';
+    color: black;
+    font-weight: bolder;
+}

@@ -1,0 +1,195 @@
+body{
+    margin:0px;
+    padding:0px;
+}
+
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 20px;
+  line-height: 1.42;
+  border-radius: 25px;
+}
+
+.page-section {
+	width: 100%;
+    height: 100vh;
+  padding-top:70px;
+  padding-bottom:70px;
+}
+.page-section#home{
+    padding-top: 120px;
+  background-image:url("https://static.pexels.com/photos/51415/pexels-photo-51415.jpeg");
+  background-size: 100%;
+}
+.page-section#about{
+  background:black;
+}
+.page-section#portfolio{
+  background-image:url("https://images.unsplash.com/photo-1454165205744-3b78555e5572?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=ca8c08d17555247f7580691500bb5351");
+  background-size: 100%;
+}
+.page-section#contact{
+  background:black;
+}
+
+#homeh1{
+  text-align:center;
+  color:white;
+  padding-top:900px;
+  padding-top:70px;
+  padding-bottom:10px;
+  font-family:'Poiret One';
+  font-weight:bold;
+  text-shadow: horizontal-offset vertical-offset blur color;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  font-size: 4vw;
+}
+
+#homeh4{
+  text-align:center;
+  color:white;
+  padding-top:10px;
+  font-family:'Indie Flower';
+  font-weight:bold;
+  text-shadow: horizontal-offset vertical-offset blur color;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+  font-size: 2vw;
+}
+
+#btncontainer{
+  padding-top:30px;
+  text-align:center;
+}
+
+#horizline{
+  border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0));
+}
+
+h1{
+    font-family:'Satisfy';
+    color:white;
+    text-shadow: horizontal-offset vertical-offset blur color;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+    padding-top: 40px;
+    font-size:5vw;
+}
+#textabout{
+  padding-top:60px;
+  color:white;
+  font-family:'Open Sans', sans-serif;
+  font-size:1.5vw;
+    text-align: left;
+}
+
+#imgabout{
+  padding-left:150px;
+    padding-top: 20px;
+  padding-bottom:40px;
+}
+
+h3{
+  font-family:'Raleway',serif;
+  color:white;
+  text-shadow: horizontal-offset vertical-offset blur color;
+  text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+
+#portCont{
+    margin-top: 50px;
+    display: inline-block;
+}
+
+#navBar{
+    background-color: #FFFFFF; opacity: 0.5; filter: alpha(opacity=50);
+}
+
+a{
+    color:white;
+}
+
+.navbar .nav > li > a {
+    color: dimgrey;
+    font-family: 'Lora';
+    font-weight: bold;
+    font-size:1.1vw;
+}
+
+#wordpress{
+    color:#21759b;
+}
+
+#stackoverflow{
+    color:darkorange;
+}
+
+#conText{
+    font-family:'Open Sans', sans-serif;
+    font-size:1.5vw;
+    color:white;
+}
+#context2{
+    font-family:'Open Sans', sans-serif;
+    font-size:1.5vw;
+    color:white;
+}
+
+#emailAddr{
+    color:forestgreen;
+}
+
+#emailSubj{
+    color:forestgreen;
+}
+
+#emailText{
+    color:forestgreen;
+}
+
+#sendbutton{
+    background-color: forestgreen;
+    color:white;
+}
+
+#emailAddr::-webkit-input-placeholder {
+    color:    forestgreen;
+}
+#emailAddr:-moz-placeholder {
+    color:    forestgreen;
+}
+#emailAddr::-moz-placeholder {
+    color:    forestgreen;
+}
+#emailAddr:-ms-input-placeholder {
+    color:    forestgreen;
+}
+
+#emailSubj::-webkit-input-placeholder {
+    color:    forestgreen;
+}
+#emailSubj:-moz-placeholder {
+    color:    forestgreen;
+}
+#emailSubj::-moz-placeholder {
+    color:    forestgreen;
+}
+#emailSubj:-ms-input-placeholder {
+    color:    forestgreen;
+}
+
+#emailText::-webkit-input-placeholder {
+    color:    forestgreen;
+}
+#emailText:-moz-placeholder {
+    color:    forestgreen;
+}
+#emailText::-moz-placeholder {
+    color:    forestgreen;
+}
+#emailText:-ms-input-placeholder {
+    color:    forestgreen;
+}

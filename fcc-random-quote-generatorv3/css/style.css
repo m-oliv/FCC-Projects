@@ -1,0 +1,83 @@
+@font-face {
+  		font-family: "Angry Chalk";
+  		src: url("https://dl.dropbox.com/s/5tjs9qz93usr9id/AngryChalk.ttf");
+}
+
+@font-face {
+  		font-family: "DJB Chalk It Up";
+  		src: url("https://dl.dropbox.com/s/fbrtijt5se7efb4/DJB%20Chalk%20It%20Up.ttf");
+}
+
+@font-face {
+  		font-family: "Tafelschrift";
+  		src: url("https://dl.dropbox.com/s/m4xx9c8fjald32s/Tafelschrift.ttf");
+}
+
+body {
+  padding-top: 120px;
+    background-image: url("http://www.jackiejohnston.us/iceharbor/bg-body.jpg");
+}
+
+.blockquote {
+   background-color: rgba(245, 245, 245, 0.2);
+}
+
+h1{
+  font-family: "Angry Chalk";
+    font-size: 32pt;
+  color: palegreen;
+  text-align: center;
+}
+blockquote {
+    padding-top: 100px;
+    border: 0;
+}
+
+.text{
+    font-family: "DJB Chalk It Up";
+    font-size: 14pt;
+    color:white;
+    text-align: center;
+    left: 50%;
+}
+
+.author{
+    padding-top: 20px;
+    padding-right: 210px;
+    font-family: "Tafelschrift";
+    color:white;
+    text-align: right;
+    right: 25%;
+}
+
+.buttons{
+    padding-top: 30px;
+    width: 15%;
+    margin: 0 auto; 
+}
+
+#quoteSymbol{
+    color:white;
+}
+
+#nextQ{
+    align-self: center;
+    width:64px;
+    height: 64px;
+}
+
+#tweet{
+    align-self: center;
+    width:64px;
+    height: 64px;
+}
+
+#twpic{
+    width:64px;
+    height: 64px;
+}
+
+#fwpic{
+    width:64px;
+    height: 64px;
+}

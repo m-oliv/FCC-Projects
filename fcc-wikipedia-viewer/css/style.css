@@ -1,0 +1,30 @@
+body{
+  
+}
+
+h1{
+    text-align: center;
+}
+
+h3{
+    text-align: center;
+}
+
+#random{
+    text-align: center;
+}
+
+#searchStuff{
+    text-align: center;
+}
+
+#searchform{
+    text-align: center;
+    width: 30em;
+    min-width: 15em;
+    margin:0 auto;
+}
+
+#results{
+    padding-top: 20px;
+}
