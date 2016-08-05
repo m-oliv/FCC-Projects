@@ -1,79 +1,67 @@
 <!DOCTYPE html>
-<html >
-  <head>
+<html>
+<head>
     <meta charset="UTF-8">
     <title>FCC - Wikipedia Viewer</title>
-    
-    
-    
+
+
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Indie+Flower' rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="css/style.css">
 
-    
-    
-    
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <h1><i class="fa fa-wikipedia-w"></i>iki Viewer</h1>
-    
-      <div class="container-fluid">
-          <div class="row">
-              
-              <div class="col-md-6" id="searchStuff">
-                  <h3>Would you like to search?</h3>
-                  <form class="inline-form" role="search" id="searchform">
-              <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search!" name="srch-term" id="srch-term">
-                  
-                  <div class="input-group-btn">
-                      <button id="searchbtn" class="btn btn-default btn-primary" type="submit">
-                          <i class="fa fa-search"></i>
-                      </button>
-                  </div>
-              </div>
-          </form>
-              
-              </div>
-          
-              
-              <div class="col-md-6" id="random">
-              <h3>Or Get a Random Article?</h3>
-              <button class="btn btn-default btn-primary" type="submit">
-                <i onclick="window.open('https://en.wikipedia.org/wiki/Special:Random')">Random Article!</i>
-              </button>
-              </div>
-              
-          </div>
-        
-          <div class="row">
-            <div class="col-md-8 col-offset-2" id="results">
-                <h4>Search Results:</h4>
-                <ul id="listresults">
-                </ul>
-            </div>
-          </div>
-          
-          
-          
-          
-      </div>
-      
-      
-      
-      
-      
-    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-md-12" id="searchStuff">
+            <h1><i class="fa fa-wikipedia-w"></i>iki Viewer</h1>
+            <h3>Would you like to search?</h3>
+            <form class="inline-form" role="search" id="searchform">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search!" name="srch-term" id="srch-term"/>
+
+                    <div class="input-group-btn">
+                        <button id="searchbtn" class="btn btn-default btn-primary" type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <h3>Or Get a Random Article?</h3>
+                    <button class="btn btn-default btn-primary" type="submit">
+                        <i onclick="window.open('https://en.wikipedia.org/wiki/Special:Random')">Random Article!</i>
+                    </button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-offset-2" id="results">
+            <h4>Search Results:</h4>
+            <ul id="listresults">
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
 <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
 
-        <script src="js/index.js"></script>
+<script src="js/index.js"></script>
 
-    
-    
-    
-  </body>
+
+</body>
 </html>

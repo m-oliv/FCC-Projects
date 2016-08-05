@@ -1,13 +1,21 @@
 body{
-  
+    background-image: url("http://www.designbolts.com/wp-content/uploads/2012/11/Free-Stressed-linen-patterns.jpg");
 }
 
 h1{
     text-align: center;
+    color: white;
+    font-family: 'Chelsea Market', cursive;
 }
 
 h3{
     text-align: center;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+}
+
+h4{
+
 }
 
 #random{
@@ -26,5 +34,7 @@ h3{
 }
 
 #results{
+    display: none;
+    color: white;
     padding-top: 20px;
 }
