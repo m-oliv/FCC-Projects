@@ -8,15 +8,10 @@ h1 {
     font-family: 'Chelsea Market', cursive;
 }
 
-h3 {
+h4 {
     text-align: center;
     color: white;
     font-family: 'Indie Flower', cursive;
-}
-
-h4 {
-    text-align: center;
-    margin: 0 auto;
 }
 
 h5 {
@@ -30,6 +25,7 @@ h5 {
 #searchStuff {
     text-align: center;
     margin: 0 auto;
+    padding-top: 40px;
 }
 
 #searchform {
@@ -61,4 +57,14 @@ a {
 a:hover {
     text-decoration: none;
     text-decoration-color: white !important;
+}
+
+div > p {
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+div > h5 {
+    padding-top: 10%;
+    padding-bottom: 10%;
 }

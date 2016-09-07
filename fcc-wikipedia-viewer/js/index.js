@@ -9,7 +9,7 @@ function searchInfo(data) {
     for (var i = 0; i < numResults; i++) {
         var li = document.createElement("li");
         li.innerHTML = "<li><div class=\"boxed\"> <a href=\"" + data[3][i] + "\"+" +
-            "target = \"_blank\"><h5>" + data[1][i] + "</h5><p>" + data[2][i] + "</p></a></div></li>";
+            "target = \"_blank\"><h5>" + data[1][i] + "</h5></a><p>" + data[2][i] + "</p></div></li>";
         ul.appendChild(li);
     }
 }
