@@ -1,21 +1,29 @@
 body {
-    background-image: url("http://www.designbolts.com/wp-content/uploads/2012/11/Free-Stressed-linen-patterns.jpg");
+    background: url("https://cdn-images-1.medium.com/max/1920/1*4ncwx3GoiqWwcz2jaNJ0Dg.jpeg");
+    background-size: 100%;
 }
 
 h1 {
     text-align: center;
     color: white;
-    font-family: 'Chelsea Market', cursive;
+    font-family: 'Yatra One', cursive;
+    text-shadow: 0.1vw 0.1vw rgba(0, 0, 0, 0.7);
+    font-size: 4em;
 }
 
 h4 {
     text-align: center;
     color: white;
     font-family: 'Indie Flower', cursive;
+    text-shadow: 0.1vw 0.1vw rgba(0, 0, 0, 0.7);
+    font-size: 2em;
 }
 
 h5 {
+    padding-top: 2vh;
     text-align: center;
+    font-size: 2em;
+    font-family: 'Playfair Display', serif;
 }
 
 #random {
@@ -25,33 +33,36 @@ h5 {
 #searchStuff {
     text-align: center;
     margin: 0 auto;
-    padding-top: 40px;
+    padding-top: 10vh;
+    transition: top .5s ease-in-out;
+    vertical-align: middle;
 }
 
 #searchform {
     text-align: center;
-    width: 40%;
-    min-width: 30%;
+    width: 40vw;
+    min-width: 30vw;
     margin: 0 auto;
 }
 
 #results {
+    background-size: cover !important;
     margin: 0 auto;
     display: none;
     color: white;
-    padding-top: 20px;
-    padding-left: 15%;
-    padding-right: 20%;
+    padding-top: 10vh;
+    padding-left: 15vw;
+    padding-right: 20vw;
 }
 
 li {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
     list-style-type: none;
 }
 
 a {
-    text-decoration-color: white !important;
+    color: white;
 }
 
 a:hover {
@@ -60,11 +71,29 @@ a:hover {
 }
 
 div > p {
-    padding-left: 10%;
-    padding-right: 10%;
+    font-family: 'News Cycle', sans-serif;
+    font-size: 1.2em;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-bottom: 2vh;
 }
 
 div > h5 {
-    padding-top: 10%;
-    padding-bottom: 10%;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+}
+
+hr {
+    color: white;
+}
+
+#srch-term {
+    background-color: rgba(0, 0, 0, 0.4) !important;
+    color: white;
+}
+
+.btn-default {
+    background: none;
+    border: 1px solid white;
+    color: white;
 }
