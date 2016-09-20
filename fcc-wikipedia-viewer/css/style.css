@@ -67,7 +67,7 @@ a {
 
 a:hover {
     text-decoration: none;
-    text-decoration-color: white !important;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 div > p {
@@ -90,10 +90,28 @@ hr {
 #srch-term {
     background-color: rgba(0, 0, 0, 0.4) !important;
     color: white;
+    -webkit-text-fill-color: white !important;
 }
 
 .btn-default {
-    background: none;
+    background: rgba(0, 0, 0, 0.4);
     border: 1px solid white;
     color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white !important;
+}
+
+li:hover{
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 0.67);
+    -moz-box-shadow:    0px 0px 30px 0px rgba(255, 255, 255, 0.67);
+    box-shadow:         0px 0px 30px 0px rgba(255, 255, 255, 0.67);
 }
