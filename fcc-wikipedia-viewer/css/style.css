@@ -32,10 +32,8 @@ h5 {
 
 #searchStuff {
     text-align: center;
-    margin: 0 auto;
     padding-top: 10vh;
-    transition: top .5s ease-in-out;
-    vertical-align: middle;
+    margin: 0 auto;
 }
 
 #searchform {
