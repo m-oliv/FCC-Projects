@@ -1,0 +1,30 @@
+div > h1 {
+    font-family: 'Poiret One';
+    text-align: center;
+}
+
+div > h2 {
+    font-family: 'Satisfy';
+    text-align: center;
+}
+
+p {
+    font-family: 'Raleway';
+}
+
+body {
+    margin-top: 60px;
+}
+
+.col-sm-6, .col-xs-12 {
+    text-align: center;
+}
+
+div > img {
+    margin: 0 auto;
+}
+
+div > p {
+    padding-left: 5%;
+    padding-right: 5%;
+}
