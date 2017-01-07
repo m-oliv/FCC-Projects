@@ -4,12 +4,11 @@
 function searchInfo(data) {
     console.log(data[1]);
     var ul = document.getElementById("listresults");
-    var numResults = data[1].length;
     console.log(data);
-    for (var i = 0; i < numResults; i++) {
+    for (var i = 0; i < data[1].length; i++) {
         var li = document.createElement("li");
-        li.innerHTML = "<li><div class=\"boxed\"><a href=\"" + data[3][i] + "\"+" +
-            "target = \"_blank\"><h5>" + data[1][i] + "</h5></a><hr><p>" + data[2][i] + "</p></div></li>";
+        li.innerHTML = "<div class=\"boxed\"><a href=\"" + data[3][i] + "\"+" +
+            "target = \"_blank\"><h5>" + data[1][i] + "</h5></a><hr><p>" + data[2][i] + "</p></div>";
         ul.appendChild(li);
     }
 }
