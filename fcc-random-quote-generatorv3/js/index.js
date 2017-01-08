@@ -1,6 +1,6 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
-
+"use strict";
 // URL to the API
 var quoteURL = "http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=jsonp&lang=en&jsonp=?";
 
@@ -9,8 +9,7 @@ var text = "";
 var author = "";
 
 // get the quote and the author
-var qInfo  = function (data) {
-    "use strict";
+function getQuoteAndAuthor (data) {
     // pass the info to the corresponding html
     $(".text").text(data.quoteText);
     $(".author").text(data.quoteAuthor);
@@ -20,29 +19,23 @@ var qInfo  = function (data) {
         $(".author").text("Anonymous");
     }
     
-    // save info to tweet in vars
+    // save info to tweet in vars (to be used in other contexts)
     text = data.quoteText;
     author = data.quoteAuthor;
-    
 };
 
 // get a quote when the page loads
 $(document).ready(function () {
-    "use strict";
-    $.getJSON(quoteURL, qInfo, 'jsonp');
+    $.getJSON(quoteURL, getQuoteAndAuthor, 'jsonp');
 });
 
 // get next quote when button is clicked
 $("#nextQ").click(function () {
-    "use strict";
-    $.getJSON(quoteURL, qInfo, 'jsonp');
+    $.getJSON(quoteURL, getQuoteAndAuthor, 'jsonp');
 });
 
 // tweet quote when button is clicked
 $("#tweetlink").click(function () {
-    "use strict";
-    // get quote string (as per twitter's guidelines)
-    var tweetQ = 'https://twitter.com/intent/tweet?text=' + text  + ' - ' + author;
-    // pass string as href
-    $("#tweetlink").attr("href", tweetQ);
+    // get quote string (as per twitter's guidelines) and pass it as href
+    $("#tweetlink").attr("href", 'https://twitter.com/intent/tweet?text=' + text  + ' - ' + author);
 });

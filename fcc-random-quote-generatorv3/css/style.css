@@ -43,16 +43,15 @@ blockquote {
 
 .author{
     padding-top: 20px;
-    padding-right: 210px;
     font-family: "Tafelschrift";
     color:white;
-    text-align: right;
-    right: 25%;
+    text-align: center;
 }
 
 .buttons{
     padding-top: 30px;
     width: 15%;
+    text-align: center;
     margin: 0 auto; 
 }
 
@@ -68,16 +67,6 @@ blockquote {
 
 #tweet{
     align-self: center;
-    width:64px;
-    height: 64px;
-}
-
-#twpic{
-    width:64px;
-    height: 64px;
-}
-
-#fwpic{
     width:64px;
     height: 64px;
 }
