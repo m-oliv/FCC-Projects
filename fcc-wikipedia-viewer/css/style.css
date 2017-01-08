@@ -38,9 +38,19 @@ h5 {
 
 #searchform {
     text-align: center;
-    width: 40vw;
-    min-width: 30vw;
     margin: 0 auto;
+}
+
+@media screen and (min-width: 600px) {
+    .search-form-size {
+        max-width: 40vw;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .search-form-size {
+        max-width: 80vw;
+    }
 }
 
 #results {
@@ -68,7 +78,7 @@ a:hover {
     color: rgba(255, 255, 255, 0.7);
 }
 
-div > p {
+div>p {
     font-family: 'News Cycle', sans-serif;
     font-size: 1.2em;
     padding-left: 5vw;
@@ -76,7 +86,7 @@ div > p {
     padding-bottom: 2vh;
 }
 
-div > h5 {
+div>h5 {
     padding-top: 10vh;
     padding-bottom: 10vh;
 }
@@ -117,10 +127,8 @@ li:hover {
 .back-to-top {
     margin: 0;
     position: fixed;
-    bottom: 0;
-    right: 0;
-    width: 10%;
-    height: 10%;
+    width: 5vw;
+    height: 5vh;
     z-index: 100;
     display: none;
     text-decoration: none;
@@ -130,4 +138,18 @@ li:hover {
 
 .back-to-top i {
     font-size: 4em;
+}
+
+@media screen and (min-width: 600px) {
+    .back-to-top-button-padding {
+        right: 3vw;
+        bottom: 5vh;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .back-to-top-button-padding {
+        right: 10vw;
+        bottom: 5vh;
+    }
 }
