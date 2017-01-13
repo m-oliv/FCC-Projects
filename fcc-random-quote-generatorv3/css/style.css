@@ -1,72 +1,100 @@
 @font-face {
-  		font-family: "Angry Chalk";
-  		src: url("https://dl.dropbox.com/s/5tjs9qz93usr9id/AngryChalk.ttf");
+    font-family: "Angry Chalk";
+    src: url("https://dl.dropbox.com/s/5tjs9qz93usr9id/AngryChalk.ttf");
 }
 
 @font-face {
-  		font-family: "DJB Chalk It Up";
-  		src: url("https://dl.dropbox.com/s/fbrtijt5se7efb4/DJB%20Chalk%20It%20Up.ttf");
+    font-family: "DJB Chalk It Up";
+    src: url("https://dl.dropbox.com/s/fbrtijt5se7efb4/DJB%20Chalk%20It%20Up.ttf");
 }
 
 @font-face {
-  		font-family: "Tafelschrift";
-  		src: url("https://dl.dropbox.com/s/m4xx9c8fjald32s/Tafelschrift.ttf");
+    font-family: "Tafelschrift";
+    src: url("https://dl.dropbox.com/s/m4xx9c8fjald32s/Tafelschrift.ttf");
 }
 
 body {
-  padding-top: 120px;
+    padding-top: 20vh;
     background-image: url("http://www.jackiejohnston.us/iceharbor/bg-body.jpg");
 }
 
 .blockquote {
-   background-color: rgba(245, 245, 245, 0.2);
+    background-color: rgba(245, 245, 245, 0.2);
 }
 
-h1{
-  font-family: "Angry Chalk";
+h1 {
+    font-family: "Angry Chalk";
     font-size: 32pt;
-  color: palegreen;
-  text-align: center;
+    color: palegreen;
+    text-align: center;
 }
+
 blockquote {
-    padding-top: 100px;
+    padding-top: 10vh;
     border: 0;
 }
 
-.text{
+.text {
     font-family: "DJB Chalk It Up";
     font-size: 14pt;
-    color:white;
+    color: white;
     text-align: center;
     left: 50%;
 }
 
-.author{
-    padding-top: 20px;
+.author {
+    padding-top: 2vh;
     font-family: "Tafelschrift";
-    color:white;
+    color: white;
     text-align: center;
 }
 
-.buttons{
-    padding-top: 30px;
-    width: 15%;
+.buttons {
+    padding-top: 5vh;
+    width: 10vw;
     text-align: center;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
 
-#quoteSymbol{
-    color:white;
+#quoteSymbol {
+    color: white;
 }
 
-#nextQ{
-    align-self: center;
-    width:64px;
-    height: 64px;
+@media screen and (min-width: 700px) {
+    .nextQ-button {
+        align-self: center;
+        width: 4vw;
+        height: 8vh;
+    }
+    .tweet-button {
+        align-self: center;
+        width: 4vw;
+        height: 8vh;
+    }
 }
 
-#tweet{
-    align-self: center;
-    width:64px;
-    height: 64px;
+@media screen and (min-width: 600px) and (max-width:699px) {
+    .nextQ-button {
+        align-self: center;
+        width: 5vw;
+        height: 6vh;
+    }
+    .tweet-button {
+        align-self: center;
+        width: 5vw;
+        height: 6vh;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .nextQ-button {
+        align-self: center;
+        width: 9vw;
+        height: 6vh;
+    }
+    .tweet-button {
+        align-self: center;
+        width: 9vw;
+        height: 6vh;
+    }
 }
