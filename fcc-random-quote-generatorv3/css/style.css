@@ -39,7 +39,6 @@ blockquote {
     font-size: 14pt;
     color: white;
     text-align: center;
-    left: 50%;
 }
 
 .author {
@@ -51,7 +50,6 @@ blockquote {
 
 .buttons {
     padding-top: 5vh;
-    width: 10vw;
     text-align: center;
     margin: 0 auto;
 }
