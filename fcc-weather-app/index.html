@@ -1,66 +1,44 @@
 <!DOCTYPE html>
-<html >
-  <head>
+<html>
+
+<head>
     <meta charset="UTF-8">
     <title>FCC - Weather App</title>
-    
-    
-    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-    
-      <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-      
+    <link href='https://fonts.googleapis.com/css?family=Raleway|Kaushan+Script' rel='stylesheet' type='text/css'>
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-        <link rel="stylesheet" href="css/style.css">
-
-    
-    
-    
-  </head>
-
-  <body>
-      
-      <div class="container-fluid">
-          
-          <div class="row text-center">
-              <h1>Your Local Weather is...</h1>
-          </div>
-          
-          <div class="row text-center">
-              <div id="weatherInfo">
-                  <p id="temp"></p>
-                  <p id="wid"></p>  
-              </div>
-          </div>
-          
-          <div id="windInfo" class="row text-center">
-              <p id="windDir"></p>
-              <p id="windSpeed"></p>
-          </div>
-          
-          <div id="bottom" class="row text-center">
-              <div id="locationInfo" class="col-md-6">
-                  <h5 id="country"></h5>
-                  <h5 id="time"></h5>
-              </div>
+<body>
+    <div class="container-fluid">
+        <div class="row text-center">
+            <h1>Your Local Weather is...</h1>
+        </div>
+        <div class="row text-center">
+            <div id="weatherInfo">
+                <p id="temp"></p>
+                <p id="wid"></p>
             </div>
-          
-          <div id="unitsButton" class="btn-group btn-toggle"> 
-              <button id="fahr" class="btn btn-s btn-default">ºF</button>
-              <button id="cels" class="btn btn-s btn-primary active">ºC</button>
-              <p id="units"></p>
-          </div>
-          
-      </div>
-    
+        </div>
+        <div id="windInfo" class="row text-center">
+            <p id="windDir"></p>
+            <p id="windSpeed"></p>
+        </div>
+        <div id="bottom" class="row text-center">
+            <div id="locationInfo" class="col-md-6">
+                <h5 id="country"></h5>
+                <h5 id="time"></h5>
+            </div>
+        </div>
+        <div id="unitsButton" class="btn-group btn-toggle">
+            <button id="fahr" class="btn btn-s btn-default">ºF</button>
+            <button id="cels" class="btn btn-s btn-primary active">ºC</button>
+            <p id="units"></p>
+        </div>
+    </div>
     <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
-     
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'></script>
+    <script src="js/index.js"></script>
+</body>
 
-        <script src="js/index.js"></script>
-
-    
-    
-    
-  </body>
 </html>
