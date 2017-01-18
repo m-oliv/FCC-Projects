@@ -13,13 +13,105 @@ var DIRECTIONS = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
 var IMPERIAL_UNITS = "imperial";
 var METRIC_UNITS = "metric";
 var IMPERIAL_UNITS_COUNTRIES = ["US", "LR", "BS", "BZ", "KY", "KW", "MM"];
-
-var WEATHER_INFO_ID = "weatherInfo";
-var BACKGROUND_IMAGE_CSS = "background-image";
-var WEATHER_ICON_ID = "weatherIcon";
-
-// image URLs
-var CLEAR_SKY_BACKGROUND = "https://farm9.staticflickr.com/8660/16712341612_1acf44685c_o_d.jpg";
+var ICON_TYPE_WEATHER = 'WEATHER';
+var ICON_TYPE_WIND = 'WIND';
+var BACKGROUND_IMAGES = {
+    clearSky: {
+        small: "",
+        medium: "",
+        large: "https://farm9.staticflickr.com/8660/16712341612_1acf44685c_o_d.jpg"
+    },
+    fog: {
+        small: "",
+        medium: "",
+        large: "http://wallpaperus.org/wallpapers/05/205/dock-fog-1920x1080-wallpaper-874500.jpg"
+    },
+    sand: {
+        small: "",
+        medium: "",
+        large: "https://pixabay.com/static/uploads/photo/2013/07/19/17/02/sandstorm-165332_960_720.jpg"
+    },
+    smoke: {
+        small: "",
+        medium: "",
+        large: "https://farm6.staticflickr.com/5616/15425029170_4df04cc9c6_o_d.jpg"
+    },
+    volcanicAsh: {
+        small: "",
+        medium: "",
+        large: "https://farm8.staticflickr.com/7457/12564894603_c4223656c9_b.jpg"
+    },
+    tornado: {
+        small: "",
+        medium: "",
+        large: "https://farm6.staticflickr.com/5263/5741513041_c34398754f_o_d.jpg"
+    },
+    hurricane: {
+        small: "",
+        medium: "",
+        large: "https://pixabay.com/static/uploads/photo/2015/11/18/17/38/hurricane-1049612_960_720.jpg"
+    },
+    cold: {
+        small: "",
+        medium: "",
+        large: "https://pixabay.com/static/uploads/photo/2016/03/04/16/03/snowflakes-1236245_960_720.jpg"
+    },
+    hot: {
+        small: "",
+        medium: "",
+        large: "https://farm4.staticflickr.com/3293/2657581054_ba86135d6b_o_d.jpg"
+    },
+    windy: {
+        small: "",
+        medium: "",
+        large: "https://farm8.staticflickr.com/7256/7432830630_913c75cffc_o_d.jpg"
+    },
+    hail: {
+        small: "",
+        medium: "",
+        large: "https://farm4.staticflickr.com/3156/2587411940_d1fa273bb9_o_d.jpg"
+    },
+    storm: {
+        small: "",
+        medium: "",
+        large: "https://farm7.staticflickr.com/6086/6145122499_2dcdaa3483_o_d.jpg"
+    },
+    strongWinds: {
+        small: "",
+        medium: "",
+        large: "https://farm8.staticflickr.com/7043/6882873263_cce47e6c2e_o_d.jpg"
+    },
+    thunderstorm: {
+        small: "",
+        medium: "",
+        large: "https://static.pexels.com/photos/56614/lightning-storm-night-firebird-56614.jpeg"
+    },
+    drizzle: {
+        small: "",
+        medium: "",
+        large: "https://static.pexels.com/photos/39811/pexels-photo-39811.jpeg"
+    },
+    rain: {
+        small: "",
+        medium: "",
+        large: "https://static.pexels.com/photos/68084/pexels-photo-68084.jpeg"
+    },
+    snow: {
+        small: "",
+        medium: "",
+        large: "https://static.pexels.com/photos/24378/pexels-photo-24378.jpg"
+    },
+    clouds: {
+        small: "",
+        medium: "",
+        large: "https://static.pexels.com/photos/215/road-sky-clouds-cloudy.jpg"
+    },
+    breeze: {
+        small: "",
+        medium: "",
+        large: "http://65.media.tumblr.com/1adc4029ef3a31124f222add70fa3553/tumblr_n2k1499dIp1st5lhmo1_1280.jpg"
+    }
+};
 
 function getK() {
     return API_ACCESS.ID.replace(API_ACCESS.SEED, API_ACCESS.BIT);
@@ -50,26 +142,89 @@ function allWhite() {
     $('#temp, #wid').css('color', "white");
 }
 
+// get the correct sized background image
+function getBackgroundImage(image) {
+    if (window.innerWidth < 300) {
+        $('body').css('background-image', "url(" + image.small + ")");
+    } else if (window.innerWidth >= 300 && window.innerWidth < 600) {
+        $('body').css('background-image', "url(" + image.medium + ")");
+    } else {
+        $('body').css('background-image', "url(" + image.large + ")");
+    }
+}
+
+// get the correct wind direction icon
+function getWindDirIcon(dir) {
+    switch (dir) {
+        case 'N':
+            getIcon("wi wi-wind towards-0-deg", ICON_TYPE_WIND);
+            document.getElementById('windDir').innerHTML = 'N';
+            break;
+        case 'NE':
+            getIcon("wi wi-wind towards-45-deg",ICON_TYPE_WIND);
+            document.getElementById('windDir').innerHTML = 'NE';
+            break;
+        case 'E':
+            getIcon("wi wi-wind towards-90-deg",ICON_TYPE_WIND);
+            document.getElementById('windDir').innerHTML = 'E';
+            break;
+        case 'SE':
+            getIcon("wi wi-wind towards-135-deg",ICON_TYPE_WIND);
+            document.getElementById('windDir').innerHTML = 'SE';
+            break;
+        case 'S':
+            getIcon("wi wi-wind towards-180-deg",ICON_TYPE_WIND);
+            document.getElementById('windDir').innerHTML = 'S';
+            break;
+        case 'SW':
+            getIcon("wi wi-wind towards-225-deg", ICON_TYPE_WIND);
+            document.getElementById('windDir').innerHTML = 'SW';
+            break;
+        case 'W':
+            getIcon("wi wi-wind towards-270-deg", ICON_TYPE_WIND);
+            document.getElementById('windDir').innerHTML = 'W';
+            break;
+        case 'NW':
+            getIcon("wi wi-wind towards-313-deg", ICON_TYPE_WIND);
+            document.getElementById('windDir').innerHTML = 'NW';
+            break;
+    }
+}
+
+function getIcon(iconType, type) {
+    switch (type) {
+        case 'WEATHER':
+            var icon = document.createElement('i');
+            icon.id = "weatherInfo";
+            icon.innerHTML = "<i id =\"weatherIcon\" class = \"" + iconType + "\"></i>";
+            document.getElementById("weatherInfo").insertBefore(icon, document.getElementById("weatherInfo").firstChild);
+            break;
+        case 'WIND':
+            var icon = document.createElement('i');
+            icon.id = 'windInfo';
+            icon.innerHTML = "<i id =\"windIcon\" class = \"" + iconType + "\"></i>";
+            document.getElementById('windInfo').insertBefore(icon, document.getElementById('windInfo').firstChild);
+            break;
+    }
+}
+
 // get icon and bg image, apply correct color config
-function getWeatherIconBG(weatherID) {
-    var icon = document.createElement('i');
-    icon.id = WEATHER_INFO_ID;
+function generateWeatherConfiguration(weatherID) {
 
     switch (weatherID) {
         // clear
         case 800:
         case 951:
-            $('body').css(BACKGROUND_IMAGE_CSS, "url("+CLEAR_SKY_BACKGROUND+")");
-            icon.innerHTML = "<i id ="+WEATHER_ICON_ID+" class = \"wi wi-day-sunny\"></i>";
-            document.getElementById(WEATHER_INFO_ID).insertBefore(icon, document.getElementById(WEATHER_INFO_ID).firstChild);
+            // icon : 
+            getIcon("wi wi-day-sunny", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.clearSky);
             break;
             // mist / haze / fog
         case 701:
         case 721:
         case 741:
-            $('body').css('background-image', "url(\"http://wallpaperus.org/wallpapers/05/205/dock-fog-1920x1080-wallpaper-874500.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-fog\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-fog", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.fog);
             $('#country').css('color', "white");
             $('#time').css('color', "white");
             allWhite();
@@ -78,31 +233,27 @@ function getWeatherIconBG(weatherID) {
         case 731:
         case 751:
         case 761:
-            $('body').css('background-image', "url(\"https://pixabay.com/static/uploads/photo/2013/07/19/17/02/sandstorm-165332_960_720.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-sandstorm\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-sandstorm", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.sand);
             break;
             // smoke
         case 711:
-            $('body').css('background-image', "url(\"https://farm6.staticflickr.com/5616/15425029170_4df04cc9c6_o_d.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-smoke\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-smoke", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.smoke);
             $('#country').css('color', "white");
             $('#time').css('color', "white");
             allWhite();
             break;
             // volcanic ash
         case 762:
-            $('body').css('background-image', "url(\"https://farm8.staticflickr.com/7457/12564894603_c4223656c9_b.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-volcano\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-volcano", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.volcanicAsh);
             break;
             // tornado
         case 781:
         case 900:
-            $('body').css('background-image', "url(\"https://farm6.staticflickr.com/5263/5741513041_c34398754f_o_d.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-tornado\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-tornado", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.tornado);
             $('#country').css('color', "white");
             $('#time').css('color', "white");
             allWhite();
@@ -111,21 +262,18 @@ function getWeatherIconBG(weatherID) {
         case 901:
         case 902:
         case 962:
-            $('body').css('background-image', "url(\"https://pixabay.com/static/uploads/photo/2015/11/18/17/38/hurricane-1049612_960_720.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-hurricane\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-hurricane", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.hurricane);
             break;
             // cold
         case 903:
-            $('body').css('background-image', "url(\"https://pixabay.com/static/uploads/photo/2016/03/04/16/03/snowflakes-1236245_960_720.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-snowflake-cold\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-snowflake-cold", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.cold);
             break;
             // hot
         case 904:
-            $('body').css('background-image', "url(\"https://farm4.staticflickr.com/3293/2657581054_ba86135d6b_o_d.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-hot\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-hot", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.hot);
             $('#country').css('color', "white");
             $('#time').css('color', "white");
             allWhite();
@@ -136,18 +284,16 @@ function getWeatherIconBG(weatherID) {
             // windy
         case 905:
         case 956:
-            $('body').css('background-image', "url(\"https://farm8.staticflickr.com/7256/7432830630_913c75cffc_o_d.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-windy\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-windy", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.windy);
             $('#country').css('color', "white");
             $('#time').css('color', "white");
             allWhite();
             break;
             // hail
         case 906:
-            $('body').css('background-image', "url(\"https://farm4.staticflickr.com/3156/2587411940_d1fa273bb9_o_d.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-hail\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-hail", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.hail);
             $('#country').css('color', "white");
             $('#time').css('color', "white");
             allWhite();
@@ -155,9 +301,8 @@ function getWeatherIconBG(weatherID) {
             // storm
         case 960:
         case 961:
-            $('body').css('background-image', "url(\"https://farm7.staticflickr.com/6086/6145122499_2dcdaa3483_o_d.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-storm-showers\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-storm-showers", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.storm);
             $('#country').css('color', "white");
             $('#time').css('color', "white");
             allWhite();
@@ -166,9 +311,8 @@ function getWeatherIconBG(weatherID) {
         case 957:
         case 958:
         case 959:
-            $('body').css('background-image', "url(\"https://farm8.staticflickr.com/7043/6882873263_cce47e6c2e_o_d.jpg\")");
-            icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-strong-wind\"></i>";
-            document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+            getIcon("wi wi-strong-wind", ICON_TYPE_WEATHER);
+            getBackgroundImage(BACKGROUND_IMAGES.strongWinds);
             $('#country').css('color', "white");
             $('#time').css('color', "white");
             allWhite();
@@ -176,48 +320,40 @@ function getWeatherIconBG(weatherID) {
             $('#windIcon').css('color', "black");
             $('#windSpeed').css('color', "black");
             break;
-
-
     }
 
     if (weatherID >= 200 && weatherID < 233) { // thunderstorm
-        icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-thunderstorm\"></i>";
-        document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
-        $('body').css('background-image', "url(\"https://static.pexels.com/photos/56614/lightning-storm-night-firebird-56614.jpeg\")");
+        getIcon("wi wi-thunderstorm", ICON_TYPE_WEATHER);
+        getBackgroundImage(BACKGROUND_IMAGES.thunderstorm);
         $('#country').css('color', "white");
         $('#time').css('color', "white");
         allWhite();
     } else if (weatherID >= 300 && weatherID < 322) { // drizzle
-        $('body').css('background-image', "url(\"https://static.pexels.com/photos/39811/pexels-photo-39811.jpeg\")");
-        icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-raindrops\"></i>";
-        document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+        getIcon("wi wi-raindrops", ICON_TYPE_WEATHER);
+        getBackgroundImage(BACKGROUND_IMAGES.drizzle);
         $('#country').css('color', "white");
         $('#time').css('color', "white");
         allWhite();
     } else if (weatherID >= 500 && weatherID < 532) { // rain
-        $('body').css('background-image', "url(\"https://static.pexels.com/photos/68084/pexels-photo-68084.jpeg\")");
-        icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-rain\"></i>";
-        document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+        getIcon("wi wi-rain", ICON_TYPE_WEATHER);
+        getBackgroundImage(BACKGROUND_IMAGES.rain);
         $('#country').css('color', "white");
         $('#time').css('color', "white");
         allWhite();
     } else if (weatherID >= 600 && weatherID < 623) { // snow
-        $('body').css('background-image', "url(\"https://static.pexels.com/photos/24378/pexels-photo-24378.jpg\")");
-        icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-snow\"></i>";
-        document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+        getIcon("wi wi-snow", ICON_TYPE_WEATHER);
+        getBackgroundImage(BACKGROUND_IMAGES.snow);
         $('h1').css('color', "white");
         $('#weatherIcon').css('color', "white");
         $('#weatherIcon, #temp, #wid').css('color', "white");
     } else if ((weatherID >= 801 && weatherID < 805) || weatherID === 771) { // clouds / squalls
-        $('body').css('background-image', "url(\"https://static.pexels.com/photos/215/road-sky-clouds-cloudy.jpg\")");
-        icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-cloudy\"></i>";
-        document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+        getIcon("wi wi-cloudy", ICON_TYPE_WEATHER);
+        getBackgroundImage(BACKGROUND_IMAGES.clouds);
         $('#country').css('color', "white");
         $('#time').css('color', "white");
     } else if (weatherID >= 952 && weatherID < 955) { // light / gentle /  moderate breeze
-        $('body').css('background-image', "url(\"http://65.media.tumblr.com/1adc4029ef3a31124f222add70fa3553/tumblr_n2k1499dIp1st5lhmo1_1280.jpg\")");
-        icon.innerHTML = "<i id =\"weatherIcon\" class = \"wi wi-windy\"></i>";
-        document.getElementById('weatherInfo').insertBefore(icon, document.getElementById('weatherInfo').firstChild);
+        getIcon("wi wi-windy", ICON_TYPE_WEATHER);
+        getBackgroundImage(BACKGROUND_IMAGES.breeze);
         $('#country').css('color', "white");
         $('#time').css('color', "white");
         allWhite();
@@ -225,53 +361,8 @@ function getWeatherIconBG(weatherID) {
 
 }
 
-// get the correct wind icon
-function getWindIcon(dir) {
-    "use strict";
-    var icon = document.createElement('i');
-
-    icon.id = 'windInfo';
-
-    switch (dir) {
-        case 'N':
-            icon.innerHTML = "<i id =\"windIcon\" class = \"wi wi-wind towards-0-deg\"></i>";
-            document.getElementById('windDir').innerHTML = 'N';
-            break;
-        case 'NE':
-            icon.innerHTML = "<i id =\"windIcon\" class = \"wi wi-wind towards-45-deg\"></i>";
-            document.getElementById('windDir').innerHTML = 'NE';
-            break;
-        case 'E':
-            icon.innerHTML = "<i id =\"windIcon\" class = \"wi wi-wind towards-90-deg\"></i>";
-            document.getElementById('windDir').innerHTML = 'E';
-            break;
-        case 'SE':
-            icon.innerHTML = "<i id =\"windIcon\" class = \"wi wi-wind towards-135-deg\"></i>";
-            document.getElementById('windDir').innerHTML = 'SE';
-            break;
-        case 'S':
-            icon.innerHTML = "<i id =\"windIcon\" class = \"wi wi-wind towards-180-deg\"></i>";
-            document.getElementById('windDir').innerHTML = 'S';
-            break;
-        case 'SW':
-            icon.innerHTML = "<i id =\"windIcon\" class = \"wi wi-wind towards-225-deg\"></i>";
-            document.getElementById('windDir').innerHTML = 'SW';
-            break;
-        case 'W':
-            icon.innerHTML = "<i id =\"windIcon\" class = \"wi wi-wind towards-270-deg\"></i>";
-            document.getElementById('windDir').innerHTML = 'W';
-            break;
-        case 'NW':
-            icon.innerHTML = "<i id =\"windIcon\" class = \"wi wi-wind towards-313-deg\"></i>";
-            document.getElementById('windDir').innerHTML = 'NW';
-            break;
-    }
-    document.getElementById('windInfo').insertBefore(icon, document.getElementById('windInfo').firstChild);
-}
-
 // get current time (HH:MM)
 function getCurrentTime() {
-    "use strict";
     var d = new Date(),
         h = d.getHours(),
         min = d.getMinutes();
@@ -288,7 +379,6 @@ function getCurrentTime() {
 
 // convert first letter of each word of the weather description to uppercase
 function titleCase(str) {
-    "use strict";
     var s1 = str.toLowerCase(),
         s = s1.split(" ");
 
@@ -338,19 +428,18 @@ function getWeather(un) {
             // apply wind icon
             if (document.contains(document.getElementById('windIcon'))) {
                 document.getElementById('windIcon').remove();
-                getWindIcon(getWindDir(data.wind.deg));
+                getWindDirIcon(getWindDir(data.wind.deg));
             } else {
-                getWindIcon(getWindDir(data.wind.deg));
+                getWindDirIcon(getWindDir(data.wind.deg));
             }
 
             // apply weather icon / bg / color config
             if (document.contains(document.getElementById('weatherIcon'))) {
                 document.getElementById('weatherIcon').remove();
-                getWeatherIconBG(data.weather[0].id);
+                generateWeatherConfiguration(data.weather[0].id);
             } else {
-                getWeatherIconBG(data.weather[0].id);
+                generateWeatherConfiguration(data.weather[0].id);
             }
-
         });
     });
 }
