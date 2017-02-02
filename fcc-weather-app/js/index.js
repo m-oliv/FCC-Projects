@@ -17,99 +17,99 @@ var ICON_TYPE_WEATHER = 'WEATHER';
 var ICON_TYPE_WIND = 'WIND';
 var BACKGROUND_IMAGES = {
     clearSky: {
-        small: "",
-        medium: "",
-        large: "https://farm9.staticflickr.com/8660/16712341612_1acf44685c_o_d.jpg"
+        small: "https://dl.dropbox.com/s/21xazy4qqb79jx2/clear-sky-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/hcxalrlabppin87/clear-sky-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/lal6ogf7tasm4gs/clear-sky-large.png?dl=0"
     },
     fog: {
-        small: "",
-        medium: "",
-        large: "http://wallpaperus.org/wallpapers/05/205/dock-fog-1920x1080-wallpaper-874500.jpg"
+        small: "https://dl.dropbox.com/s/l39cuesv4wts460/fog-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/r50ykwogitu8tw1/fog-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/bb72lp3154nw4py/fog-large.png?dl=0"
     },
     sand: {
-        small: "",
-        medium: "",
-        large: "https://pixabay.com/static/uploads/photo/2013/07/19/17/02/sandstorm-165332_960_720.jpg"
+        small: "https://dl.dropbox.com/s/y92qd60ifdbkahd/sand-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/s5m656v1a8pyt5j/sand-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/ajx36dlxa9i0tga/sand-large.png?dl=0"
     },
     smoke: {
-        small: "",
-        medium: "",
-        large: "https://farm6.staticflickr.com/5616/15425029170_4df04cc9c6_o_d.jpg"
+        small: "https://dl.dropbox.com/s/okut2ixfsilcqmf/smoke-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/7jvsh0vww9gj4o4/smoke-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/m9np9vqtvz3x0q6/smoke-large.png?dl=0"
     },
     volcanicAsh: {
-        small: "",
-        medium: "",
-        large: "https://farm8.staticflickr.com/7457/12564894603_c4223656c9_b.jpg"
+        small: "https://dl.dropbox.com/s/jh047z9gezht90s/volcanicash-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/o85iki84notiwla/volcanicash-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/8ewjbgl6n56nsrp/volcanicash-large.png?dl=0"
     },
     tornado: {
-        small: "",
-        medium: "",
-        large: "https://farm6.staticflickr.com/5263/5741513041_c34398754f_o_d.jpg"
+        small: "https://dl.dropbox.com/s/vei71rai242n9wb/tornado-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/o9qaqmkak0dd4os/tornado-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/4q9rqhwiy9fsl70/tornado-large.png?dl=0"
     },
     hurricane: {
-        small: "",
-        medium: "",
-        large: "https://pixabay.com/static/uploads/photo/2015/11/18/17/38/hurricane-1049612_960_720.jpg"
+        small: "https://dl.dropbox.com/s/m40u20pxu0mbr7z/hurricane-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/k83op5dv5quoio6/hurricane-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/spop4lxyvc4gjxj/hurricane-large.png?dl=0"
     },
     cold: {
-        small: "",
-        medium: "",
-        large: "https://pixabay.com/static/uploads/photo/2016/03/04/16/03/snowflakes-1236245_960_720.jpg"
+        small: "https://dl.dropbox.com/s/izisroq1qfcu4wb/cold-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/qmzaxnti8jjoplk/cold-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/i4rttftcwnzhe8k/cold-large.png?dl=0"
     },
     hot: {
-        small: "",
-        medium: "",
-        large: "https://farm4.staticflickr.com/3293/2657581054_ba86135d6b_o_d.jpg"
+        small: "https://dl.dropbox.com/s/irvpk1ymybrpxns/hot-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/g7t2fjgz0h5bamm/hot-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/x4v1lc7p801ys5s/hot-large.png?dl=0"
     },
     windy: {
-        small: "",
-        medium: "",
-        large: "https://farm8.staticflickr.com/7256/7432830630_913c75cffc_o_d.jpg"
+        small: "https://dl.dropbox.com/s/q502knzlry1xz3w/wind-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/c16zvqhi2wntn3p/wind-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/0qnomqzw5i06od6/wind-large.png?dl=0"
     },
     hail: {
-        small: "",
-        medium: "",
-        large: "https://farm4.staticflickr.com/3156/2587411940_d1fa273bb9_o_d.jpg"
+        small: "https://dl.dropbox.com/s/nkmli3f2ihdbttc/hail-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/jsab55mheb8oxub/hail-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/cm0stgyfz2zwmc5/hail-large.png?dl=0"
     },
     storm: {
-        small: "",
-        medium: "",
-        large: "https://farm7.staticflickr.com/6086/6145122499_2dcdaa3483_o_d.jpg"
+        small: "https://dl.dropbox.com/s/y5i10u53jwq5r7f/storm-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/svgtwcvdg7q4a5q/storm-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/7psmanl4528tg7a/storm-large.png?dl=0"
     },
     strongWinds: {
-        small: "",
-        medium: "",
-        large: "https://farm8.staticflickr.com/7043/6882873263_cce47e6c2e_o_d.jpg"
+        small: "https://dl.dropbox.com/s/jtjpukn1790aexd/strongwinds-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/2dcik6cf00h9bbi/strongwinds-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/w5olyf8adg83qzg/strongwinds-large.png?dl=0"
     },
     thunderstorm: {
-        small: "",
-        medium: "",
-        large: "https://static.pexels.com/photos/56614/lightning-storm-night-firebird-56614.jpeg"
+        small: "https://dl.dropbox.com/s/hsis4j4px87ihla/thunderstorms-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/s8qhwvcix2y139u/thunderstorms-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/ghrqujkc369y389/thunderstorms-large.png?dl=0"
     },
     drizzle: {
-        small: "",
-        medium: "",
-        large: "https://static.pexels.com/photos/39811/pexels-photo-39811.jpeg"
+        small: "https://dl.dropbox.com/s/3k2c1n8u2zxmhaj/drizzle-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/fttk2pj2fixi2oa/drizzle-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/2cplyqbo4reysjm/drizzle-large.png?dl=0"
     },
     rain: {
-        small: "",
-        medium: "",
-        large: "https://static.pexels.com/photos/68084/pexels-photo-68084.jpeg"
+        small: "https://dl.dropbox.com/s/kpvf6r15au1dfxp/rain-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/fml1kpsmsgzxkm0/rain-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/uy8iz28py0xszd5/rain-large.png?dl=0"
     },
     snow: {
-        small: "",
-        medium: "",
-        large: "https://static.pexels.com/photos/24378/pexels-photo-24378.jpg"
+        small: "https://dl.dropbox.com/s/1s95ld0gy3uukx8/snow-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/et61611zeejnj5q/snow-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/62htdzsw9mh6k8i/snow-large.png?dl=0"
     },
     clouds: {
-        small: "",
-        medium: "",
-        large: "https://static.pexels.com/photos/215/road-sky-clouds-cloudy.jpg"
+        small: "https://dl.dropbox.com/s/1espkbrhvf5g5pv/clouds-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/47a4u2cpxdmb6ip/clouds-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/cdtowmxz4w3veya/clouds-large.png?dl=0"
     },
     breeze: {
-        small: "",
-        medium: "",
-        large: "http://65.media.tumblr.com/1adc4029ef3a31124f222add70fa3553/tumblr_n2k1499dIp1st5lhmo1_1280.jpg"
+        small: "https://dl.dropbox.com/s/m2eozrbpolcm6tn/breeze-small.png?dl=0",
+        medium: "https://dl.dropbox.com/s/h2i7zwnk9q8yapk/breeze-medium.png?dl=0",
+        large: "https://dl.dropbox.com/s/luaaqsd36z68wox/breeze-large.png?dl=0"
     }
 };
 
@@ -144,9 +144,9 @@ function allWhite() {
 
 // get the correct sized background image
 function getBackgroundImage(image) {
-    if (window.innerWidth < 300) {
+    if (window.innerWidth < 768) {
         $('body').css('background-image', "url(" + image.small + ")");
-    } else if (window.innerWidth >= 300 && window.innerWidth < 600) {
+    } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
         $('body').css('background-image', "url(" + image.medium + ")");
     } else {
         $('body').css('background-image', "url(" + image.large + ")");
@@ -380,9 +380,9 @@ function getCurrentTime() {
 // convert first letter of each word of the weather description to uppercase
 function titleCase(str) {
     var s1 = str.toLowerCase(),
-        s = s1.split(" ");
+        s = s1.split(" "), i, len = s.length;
 
-    for (var i = 0; i < s.length; i++) {
+    for (i = 0; i < len; i++) {
         s[i] = s[i].charAt(0).toUpperCase() + s[i].substr(1).toLowerCase();
     }
 
@@ -458,9 +458,9 @@ $('.btn-toggle').click(function () {
         $(this).find('.btn').toggleClass('btn-primary');
 
         if ($("#fahr").hasClass('active')) {
-            getWeather("imperial");
+            getWeather(IMPERIAL_UNITS);
         } else {
-            getWeather("metric");
+            getWeather(METRIC_UNITS);
         }
     }
 });
