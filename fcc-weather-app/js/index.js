@@ -117,12 +117,16 @@ function getK() {
     return API_ACCESS.ID.replace(API_ACCESS.SEED, API_ACCESS.BIT);
 }
 
-// Get wind direction
+/**
+ * Get wind direction
+ */
 function getWindDir(angle) {
     return DIRECTIONS[Math.round((angle / 45))];
 }
 
-// Get units based on location
+/**
+ * Get the units based on location.
+ */
 function getUnits(country) {
     if (IMPERIAL_UNITS_COUNTRIES.indexOf(country) !== -1) {
         return IMPERIAL_UNITS;
@@ -131,7 +135,9 @@ function getUnits(country) {
     }
 }
 
-// change color of everything to white
+/**
+ * Change the font color of the elements to white.
+ */
 function allWhite() {
     $('h1').css('color', "white");
     $('#locationInfo').css('color', "white");
@@ -142,7 +148,9 @@ function allWhite() {
     $('#temp, #wid').css('color', "white");
 }
 
-// get the correct sized background image
+/**
+ * Get the background image with the correct size.
+ */
 function getBackgroundImage(image) {
     if (window.innerWidth < 768) {
         $('body').css('background-image', "url(" + image.small + ")");
@@ -153,7 +161,9 @@ function getBackgroundImage(image) {
     }
 }
 
-// get the correct wind direction icon
+/**
+ * Get the correct wind direction icon.
+ */
 function getWindDirIcon(dir) {
     switch (dir) {
         case 'N':
@@ -161,19 +171,19 @@ function getWindDirIcon(dir) {
             document.getElementById('windDir').innerHTML = 'N';
             break;
         case 'NE':
-            getIcon("wi wi-wind towards-45-deg",ICON_TYPE_WIND);
+            getIcon("wi wi-wind towards-45-deg", ICON_TYPE_WIND);
             document.getElementById('windDir').innerHTML = 'NE';
             break;
         case 'E':
-            getIcon("wi wi-wind towards-90-deg",ICON_TYPE_WIND);
+            getIcon("wi wi-wind towards-90-deg", ICON_TYPE_WIND);
             document.getElementById('windDir').innerHTML = 'E';
             break;
         case 'SE':
-            getIcon("wi wi-wind towards-135-deg",ICON_TYPE_WIND);
+            getIcon("wi wi-wind towards-135-deg", ICON_TYPE_WIND);
             document.getElementById('windDir').innerHTML = 'SE';
             break;
         case 'S':
-            getIcon("wi wi-wind towards-180-deg",ICON_TYPE_WIND);
+            getIcon("wi wi-wind towards-180-deg", ICON_TYPE_WIND);
             document.getElementById('windDir').innerHTML = 'S';
             break;
         case 'SW':
@@ -191,6 +201,10 @@ function getWindDirIcon(dir) {
     }
 }
 
+/**
+ * Retrieve the correct icon (weather or wind icon) according
+ * to the 'type' flag.
+ */
 function getIcon(iconType, type) {
     switch (type) {
         case 'WEATHER':
@@ -208,7 +222,10 @@ function getIcon(iconType, type) {
     }
 }
 
-// get icon and bg image, apply correct color config
+/**
+ * Get the weather icon and background image. 
+ * Apply the correct color configuration.
+ */
 function generateWeatherConfiguration(weatherID) {
 
     switch (weatherID) {
@@ -361,7 +378,9 @@ function generateWeatherConfiguration(weatherID) {
 
 }
 
-// get current time (HH:MM)
+/**
+ * Get current time in the HH:MM format.
+ */
 function getCurrentTime() {
     var d = new Date(),
         h = d.getHours(),
@@ -377,80 +396,141 @@ function getCurrentTime() {
     return h + ":" + min + " h";
 }
 
-// convert first letter of each word of the weather description to uppercase
+/**
+ * Convert first letter of each word of the weather 
+ * description to uppercase.
+ */
 function titleCase(str) {
-    var s1 = str.toLowerCase(),
-        s = s1.split(" "), i, len = s.length;
+    var s = str.toLowerCase().split(" "),
+        i, 
+        len = s.length;
 
     for (i = 0; i < len; i++) {
-        s[i] = s[i].charAt(0).toUpperCase() + s[i].substr(1).toLowerCase();
+        s[i] = s[i].charAt(0).toUpperCase() 
+        + s[i].substr(1).toLowerCase();
     }
 
-    var s2 = s.join(" ");
-    return s2;
+    return s.join(" ");
 }
 
-// Get current weather
-function getWeather(un) {
-    // get location data
+/**
+ * Set the location according to the data retrieved from the
+ * location request.
+ */
+function setLocation(country, city, region) {
+    if (country === 'US') {
+        document.getElementById('country').innerHTML = "Your Location: " + city + ", " + region + ", " + country;
+    } else {
+        document.getElementById('country').innerHTML = "Your Location: " + city + ", " + country;
+    }
+}
+
+/**
+ * Select the correct URL before requesting the weather data.
+ */
+function selectUrlWithUnits(units, latitude, longitude, country) {
+    if (units === "") {
+        return "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&units=" + getUnits(country) + "&APPID=" + getK();
+    } else {
+        return "http://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon=" + longitude + "&units=" + units + "&APPID=" + getK();
+    }
+}
+
+/**
+ * Set the units.
+ */
+function setUnitData(units, data){
+if (units === 'metric' || units === "") {
+        document.getElementById('temp').innerHTML = data.main.temp.toFixed(1) + " ºC";
+        document.getElementById('windSpeed').innerHTML = (data.wind.speed * 3.6).toFixed(1) + " km/h";
+    } else {
+        document.getElementById('temp').innerHTML = data.main.temp + " ºF";
+        document.getElementById('windSpeed').innerHTML = data.wind.speed + " mph";
+    }
+}
+
+/**
+ * Set the wind data and icon.
+ */
+function setWindData(data){
+    // apply wind icon
+    if (document.contains(document.getElementById('windIcon'))) {
+        document.getElementById('windIcon').remove();
+        getWindDirIcon(getWindDir(data.wind.deg));
+    } else {
+        getWindDirIcon(getWindDir(data.wind.deg));
+    }
+}
+
+/**
+ * Set the weather description, units and configurations.
+ */
+function setWeatherData(data){
+    // set the description
+    document.getElementById('wid').innerHTML = titleCase(data.weather[0].description);
+    // apply weather icon / bg / color config
+    if (document.contains(document.getElementById('weatherIcon'))) {
+        document.getElementById('weatherIcon').remove();
+        generateWeatherConfiguration(data.weather[0].id);
+    } else {
+        generateWeatherConfiguration(data.weather[0].id);
+    }
+}
+
+/**
+ * Process the weather data returned by the API.
+ */
+function processWeatherData(data) {
+    console.log('weather data retrieved:');
+    console.log(data);
+
+    // set the units according to location
+    setUnitData(units, data);
+
+    // set the current time
+    document.getElementById('time').innerHTML = "Your Time: " + getCurrentTime();
+
+    // set the wind data
+    setWindData(data);
+
+    // set the weather data
+    setWeatherData(data);
+}
+
+/**
+ * Request the location and weather data.
+ */
+function requestData(units) {
+    // Request location data
     $.getJSON('http://ip-api.com/json/').done(function (data) {
-        var c = data.country,
-            url = "";
+        console.log('location data received:');
+        console.log(data);
 
-        // Check if the units
-        if (un === "") {
-            // predefined units (based on location)
-            url = "http://api.openweathermap.org/data/2.5/weather?lat=" + data.lat + "&lon=" + data.lon + "&units=" + getUnits(c) + "&APPID=" + getK();
-        } else {
-            // custom units (based on toggle)
-            url = "http://api.openweathermap.org/data/2.5/weather?lat=" + data.lat + "&lon=" + data.lon + "&units=" + un + "&APPID=" + getK();
-        }
-        if (c === 'US') {
-            document.getElementById('country').innerHTML = "Your Location: " + data.city + ", " + data.regionName + ", " + c;
-        } else {
-            document.getElementById('country').innerHTML = "Your Location: " + data.city + ", " + c;
-        }
+        /*
+            Get the correct URL needed to request the weather data
+            with the correct units.
+        */
+        var url = selectUrlWithUnits(units, data.lat, data.lon, data.country);
 
+        // set the location info
+        setLocation(data.country, data.city, data.regionName);
 
-        // Get weather data
-        $.getJSON(url).done(function (data) {
-            document.getElementById('wid').innerHTML = titleCase(data.weather[0].description);
-            if (un === 'metric' || un === "") {
-                document.getElementById('temp').innerHTML = data.main.temp.toFixed(1) + " ºC";
-                document.getElementById('windSpeed').innerHTML = (data.wind.speed * 3.6).toFixed(1) + " km/h";
-            } else {
-                document.getElementById('temp').innerHTML = data.main.temp + " ºF";
-                document.getElementById('windSpeed').innerHTML = data.wind.speed + " mph";
-            }
-
-            document.getElementById('time').innerHTML = "Your Time: " + getCurrentTime();
-
-            // apply wind icon
-            if (document.contains(document.getElementById('windIcon'))) {
-                document.getElementById('windIcon').remove();
-                getWindDirIcon(getWindDir(data.wind.deg));
-            } else {
-                getWindDirIcon(getWindDir(data.wind.deg));
-            }
-
-            // apply weather icon / bg / color config
-            if (document.contains(document.getElementById('weatherIcon'))) {
-                document.getElementById('weatherIcon').remove();
-                generateWeatherConfiguration(data.weather[0].id);
-            } else {
-                generateWeatherConfiguration(data.weather[0].id);
-            }
-        });
+        // Request weather data
+        $.getJSON(url).done(processWeatherData);
     });
 }
 
-// get weather on page load (location-based units)
+/**
+ * Request weather data (with location-based units) when the page loads
+ */
 $(document).ready(function () {
-    getWeather("");
-
+    requestData("");
 });
 
-// Change units on toggle click
+/**
+ * Change the units on toggle.
+ *
+ */
 $('.btn-toggle').click(function () {
     $(this).find('.btn').toggleClass('active');
 
@@ -458,9 +538,9 @@ $('.btn-toggle').click(function () {
         $(this).find('.btn').toggleClass('btn-primary');
 
         if ($("#fahr").hasClass('active')) {
-            getWeather(IMPERIAL_UNITS);
+            requestData(IMPERIAL_UNITS);
         } else {
-            getWeather(METRIC_UNITS);
+            requestData(METRIC_UNITS);
         }
     }
 });
