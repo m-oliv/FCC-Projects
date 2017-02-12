@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>FCC - Twitch</title>
+  <link rel='stylesheet prefetch' href='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css'>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <body layout="row" ng-app="fccTwitch" ng-cloak>
+    <div ng-controller="TwitchDashboardController" ng-cloak>
+      <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-button>
+          <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2>
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon md-svg-icon="img/icons/favorite.svg" style="color: greenyellow;"></md-icon>
+          </md-button>
+          <md-button class="md-icon-button" aria-label="More">
+            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="All">
+            <md-content class="md-padding">
+              <div ng-repeat="row in grid" flex layout="row">
+                <div ng-repeat="item in row" flex layout="row" layout-align="center center" layout-margin class="box">
+                  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">{{::item}}</span>
+                        <span class="md-subhead">Large</span>
+                      </md-card-title-text>
+                      <md-card-title-media>
+                        <div class="md-media-lg card-media"></div>
+                      </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                      <md-button>Action 1</md-button>
+                      <md-button>Action 2</md-button>
+                    </md-card-actions>
+                  </md-card>
+                </div>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Online">
+            <md-content class="md-padding">
+              <div ng-repeat="row in grid" flex layout="row">
+                <div ng-repeat="item in row" flex layout="row" layout-align="center center" layout-margin class="box">
+                  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">{{::item}}</span>
+                        <span class="md-subhead">Large</span>
+                      </md-card-title-text>
+                      <md-card-title-media>
+                        <div class="md-media-lg card-media"></div>
+                      </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                      <md-button>Action 1</md-button>
+                      <md-button>Action 2</md-button>
+                    </md-card-actions>
+                  </md-card>
+                </div>
+              </div>
+            </md-content>
+          </md-tab>
+          <md-tab label="Offline">
+            <md-content class="md-padding">
+              <div ng-repeat="row in grid" flex layout="row">
+                <div ng-repeat="item in row" flex layout="row" layout-align="center center" layout-margin class="box">
+                  <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                    <md-card-title>
+                      <md-card-title-text>
+                        <span class="md-headline">{{::item}}</span>
+                        <span class="md-subhead">Large</span>
+                      </md-card-title-text>
+                      <md-card-title-media>
+                        <div class="md-media-lg card-media"></div>
+                      </md-card-title-media>
+                    </md-card-title>
+                    <md-card-actions layout="row" layout-align="end center">
+                      <md-button>Action 1</md-button>
+                      <md-button>Action 2</md-button>
+                    </md-card-actions>
+                  </md-card>
+                </div>
+              </div>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+    </div>
+  </body>
+  <!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.js'></script>
+  <script src='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js'></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>
