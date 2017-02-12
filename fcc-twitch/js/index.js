@@ -109,11 +109,15 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService'])
             url: '' // channelUrl
         };
 
+        angular.element(document).ready(function () {
+            init();
+        });
+
         function init(){
             
         }
 
-        angular.element(document).ready(function () {
+        $scope.onRefreshPageDataClicked = function(){
             init();
-        });
+        };
     });

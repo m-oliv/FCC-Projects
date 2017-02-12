@@ -4,34 +4,32 @@
 <head>
   <meta charset="UTF-8">
   <title>FCC - Twitch</title>
-  <link rel='stylesheet prefetch' href='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css'>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel='stylesheet prefetch' href='https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.css'>
+  <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/12474798/MaterialDesign-Webfont-master/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body layout="row" ng-app="fccTwitch" ng-cloak>
-  <div ng-controller="TwitchDashboardController" ng-cloak>
-    <md-toolbar class="md-hue-2">
+  <div ng-controller="TwitchDashboardController" ng-cloak flex="100">
+    <md-toolbar class="md-hue-2" layout="column" layout-align="center center">
       <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-          <i class="material-icons">menu</i>
-        </md-button>
-        <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2>
-        <md-button class="md-icon-button" aria-label="Favorite">
-          <i class="material-icons" style="color: greenyellow;">favorite</i>
-        </md-button>
-        <md-button class="md-icon-button" aria-label="More">
-          <i class="material-icons" style="color: greenyellow;">more_vert</i>
+        <h2 flex md-truncate layout-align="center"> <md-icon class="mdi mdi-twitch mdi-24px"></md-icon> Twitch Viewer</h2>
+        <md-button class="md-icon-button" style="color: white;">
+          <md-icon class="mdi mdi-refresh mdi-24px"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
-    <md-content>
+    <md-content layout="column">
       <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Search">
+          <md-content class="md-padding">
+          </md-content>
+        </md-tab>
         <md-tab label="All">
           <md-content class="md-padding">
             <div ng-repeat="row in grid" flex layout="row">
               <div ng-repeat="item in row" flex layout="row" layout-align="center center" layout-margin class="box">
-                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card flex="100">
                   <md-card-title>
                     <md-card-title-text>
                       <span class="md-headline">{{::item}}</span>
@@ -41,8 +39,8 @@
                     </md-card-title-media>
                   </md-card-title>
                   <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Action 1</md-button>
-                    <md-button>Action 2</md-button>
+                    <md-button class="md-primary md-raised">Action 1</md-button>
+                    <md-button class="md-primary md-raised">Action 2</md-button>
                   </md-card-actions>
                 </md-card>
               </div>
@@ -53,7 +51,7 @@
           <md-content class="md-padding">
             <div ng-repeat="row in grid" flex layout="row">
               <div ng-repeat="item in row" flex layout="row" layout-align="center center" layout-margin class="box">
-                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card flex="100">
                   <md-card-title>
                     <md-card-title-text>
                       <span class="md-headline">{{::item}}</span>
@@ -63,8 +61,8 @@
                     </md-card-title-media>
                   </md-card-title>
                   <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Action 1</md-button>
-                    <md-button>Action 2</md-button>
+                    <md-button class="md-primary md-raised">Action 1</md-button>
+                    <md-button class="md-primary md-raised">Action 2</md-button>
                   </md-card-actions>
                 </md-card>
               </div>
@@ -75,7 +73,7 @@
           <md-content class="md-padding">
             <div ng-repeat="row in grid" flex layout="row">
               <div ng-repeat="item in row" flex layout="row" layout-align="center center" layout-margin class="box">
-                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+                <md-card flex="100">
                   <md-card-title>
                     <md-card-title-text>
                       <span class="md-headline">{{::item}}</span>
@@ -85,30 +83,8 @@
                     </md-card-title-media>
                   </md-card-title>
                   <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Action 1</md-button>
-                    <md-button>Action 2</md-button>
-                  </md-card-actions>
-                </md-card>
-              </div>
-            </div>
-          </md-content>
-        </md-tab>
-        <md-tab label="All">
-          <md-content class="md-padding">
-            <div ng-repeat="row in grid" flex layout="row">
-              <div ng-repeat="item in row" flex layout="row" layout-align="center center" layout-margin class="box">
-                <md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
-                  <md-card-title>
-                    <md-card-title-text>
-                      <span class="md-headline">{{::item}}</span>
-                    </md-card-title-text>
-                    <md-card-title-media>
-                      <div class="md-media-lg card-media"></div>
-                    </md-card-title-media>
-                  </md-card-title>
-                  <md-card-actions layout="row" layout-align="end center">
-                    <md-button>Action 1</md-button>
-                    <md-button>Action 2</md-button>
+                    <md-button class="md-primary md-raised">Action 1</md-button>
+                    <md-button class="md-primary md-raised">Action 2</md-button>
                   </md-card-actions>
                 </md-card>
               </div>
