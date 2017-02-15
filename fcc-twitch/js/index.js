@@ -33,8 +33,10 @@ angular.module('fccTwitch.services.UrlService', [])
     });
 
 angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService'])
-    .service('HttpService', function ($http, UrlService) {
+    .service('HttpService', function ($http,$q, UrlService) {
+
         this.getUserInformation = function (username, success, error) {
+            var cancel = $q.defer();
             $http({
                 method: 'GET',
                 url: UrlService.getUserInfoUrl() + username
@@ -53,6 +55,7 @@ angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService
         }
 
         this.getChannelInformation = function (username, success, error) {
+            var cancel = $q.defer();
             $http({
                 method: 'GET',
                 url: UrlService.getChannelInfoUrl() + username
@@ -71,6 +74,7 @@ angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService
         }
 
         this.getStreamInformation = function (username, success, error) {
+            var cancel = $q.defer();
             $http({
                 method: 'GET',
                 url: UrlService.getStreamInfoUrl() + username
@@ -90,7 +94,7 @@ angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService
     });
 
 angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fccTwitch.services.UtilService'])
-    .controller('TwitchDashboardController', function ($scope, $log, HttpService, UtilService) {
+    .controller('TwitchDashboardController', function ($scope, $log,$q, HttpService, UtilService) {
         $scope.grid = [
             [1, 2, 3],
             [4, 5, 6],
@@ -106,17 +110,17 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         var streamerInfo = {
             username: '',
             name: '',
-            bio: '',
+            bio: "TBD",
             logo: '',
 
-            viewers: '',
+            viewers: 0,
             game: '',
-            fps: '',
+            fps: 0,
 
             nowStreaming: '',
-            streamViews: '',
+            streamViews: 0,
             language: '',
-            isMature: '',
+            isMature: false,
             url: ''
         };
         //var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
@@ -127,42 +131,52 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         });
 
         function init() {
-            var i, usersLength = users.length;
-            for (i = 0; i < usersLength; i++) {
-                getUserInformation(users[i]);
-                getChannelInformation(users[i]);
-                getStreamInformation(users[i]);
-            }
+            requestData();
         }
 
         $scope.onRefreshPageDataClicked = function () {
 
         };
 
-        function clearData(){
+        function requestData() {
+            var promise = $q.when(true);
+            angular.forEach(users, function(user){
+                promise = promise.then(function(){
+                    return getUserInformation(user);
+                });
+            });
+
+          $log.debug(userData);
+          $log.debug(channelData);
+          $log.debug(streamData);
+        }
+
+        function clearData() {
             streamerInfo = {
-            username: '',
-            name: '',
-            bio: '',
-            logo: '',
+                username: '',
+                name: '',
+                bio: "TBD",
+                logo: '',
 
-            viewers: '',
-            game: '',
-            fps: '',
+                viewers: 0,
+                game: '',
+                fps: 0,
 
-            nowStreaming: '',
-            streamViews: '',
-            language: '',
-            isMature: '',
-            url: ''
-        };
+                nowStreaming: '',
+                streamViews: 0,
+                language: '',
+                isMature: false,
+                url: ''
+            };
         }
 
         function getUserInformation(user) {
-            HttpService.getUserInformation(user.toLowerCase(),onGetUserInformationSuccess, onGetUserInformationError);
+            HttpService.getUserInformation(user.toLowerCase(), function(response){
+                onGetUserInformationSuccess(response, user);
+            }, onGetUserInformationError);
         }
 
-        function onGetUserInformationSuccess(data) {
+        function onGetUserInformationSuccess(data, user) {
             $log.debug("Successfully retrieved user data.");
             //$log.debug(data);
             userData.push({
@@ -171,6 +185,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 bio: data.bio,
                 logo: data.logo
             });
+
+            getChannelInformation(user);
         }
 
         function onGetUserInformationError(data) {
@@ -180,13 +196,15 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         }
 
         function getChannelInformation(user) {
-            HttpService.getChannelInformation(user.toLowerCase(), onGetChannelInformationSuccess, onGetChannelInformationError);
+            HttpService.getChannelInformation(user.toLowerCase(), function(response){
+                onGetChannelInformationSuccess(response, user);
+            }, onGetChannelInformationError);
         }
 
-        function onGetChannelInformationSuccess(response) {
+        function onGetChannelInformationSuccess(response,user) {
             $log.debug("Successfully retrieved channel data.");
             //$log.debug(response);
-            if(response.stream!==null){
+            if (response.stream !== null) {
                 channelData.push({
                     user: response.stream.channel.name,
                     viewers: response.stream.viewers,
@@ -194,6 +212,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                     fps: response.stream.average_fps
                 });
             }
+
+            getStreamInformation(user);
         }
 
         function onGetChannelInformationError(response) {
@@ -217,10 +237,6 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 isMature: response.mature,
                 url: response.url
             });
-
-            $log.debug(userData);
-            $log.debug(channelData);
-            $log.debug(streamData);
         }
 
         function onGetStreamInformationError(response) {
