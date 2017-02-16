@@ -125,22 +125,31 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             url: ''
         };
         //var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-        var users = ["ESL_SC2", "freecodecamp"];
+        var users = ["ESL_SC2", "freecodecamp", "brunofin"];
+
+        // TODO handle invalid users / 404s
 
         angular.element(document).ready(function () {
             init();
         });
 
         function init() {
+            // TODO loading dialog
+            requestData();
+            $timeout(function () {
+                processData();
+                $log.debug($scope.streamers);
+                $scope.grid = getStreamerGrid();
+            }, 5000);
+        }
+
+        $scope.onRefreshPageDataClicked = function () {
+            // TODO loading dialog
             requestData();
             $timeout(function () {
                 processData();
                 $log.debug($scope.streamers);
             }, 5000);
-        }
-
-        $scope.onRefreshPageDataClicked = function () {
-
         };
 
         function requestData() {
@@ -158,23 +167,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
 
         function processData() {
             for (var i = 0; i < users.length; i++) {
-                streamerInfo = {
-                username: '',
-                name: '',
-                bio: "TBD",
-                logo: '',
 
-                isStreaming: false,
-                viewers: 0,
-                game: '',
-                fps: 0,
-
-                nowStreaming: '',
-                streamViews: 0,
-                language: '',
-                isMature: false,
-                url: ''
-            };
+                clearData();
 
                 for (var j = 0; j < userData.length; j++) {
                     if (userData[j].username === users[i].toLocaleLowerCase()) {
@@ -199,7 +193,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 }
 
                 for (var l = 0; l < streamData.length; l++) {
-                    if (streamData[l].username === users[i].toLocaleLowerCase()) {
+                    if (streamData[l].user === users[i].toLocaleLowerCase()) {
                         streamerInfo.isMature = streamData[l].isMature;
                         streamerInfo.language = streamData[l].language;
                         streamerInfo.nowStreaming = streamData[l].nowStreaming;
@@ -291,7 +285,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
 
         function onGetStreamInformationSuccess(response) {
             $log.debug("Successfully retrieved stream data.");
-            $log.debug(response);
+            //$log.debug(response);
             streamData.push({
                 user: response.name,
                 nowStreaming: response.status,
@@ -306,5 +300,20 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             $log.debug("Error retrieving stream data.");
             $log.debug(response);
             UtilService.showToastMessage("Error retrieving stream data.");
+        }
+
+        function getStreamerGrid() {
+            var grid = [];
+            var tempGridLine = [];
+            
+            var i, j, temparray, chunk = 3;
+            
+            for (i = 0, j = $scope.streamers.length; i < j; i += chunk) {
+                tempGridLine = $scope.streamers.slice(i, i + chunk);
+                // do whatever
+                grid.push(tempGridLine);
+            }
+
+            return grid;
         }
     });
