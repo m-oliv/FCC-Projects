@@ -95,11 +95,9 @@ angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService
 
 angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fccTwitch.services.UtilService'])
     .controller('TwitchDashboardController', function ($scope, $log, $q, $timeout, $window, HttpService, UtilService) {
-        $scope.grid = [
-            [1, 2, 3],
-            [4, 5, 6],
-            [7, 8, 9]
-        ];
+        
+        $scope.showSearch = false;
+        $scope.searchTerm = "";
         $scope.showSearchResults = false;
         $scope.streamers = [];
 
@@ -149,10 +147,12 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
 
         $scope.onRefreshPageDataClicked = function () {
             // TODO loading dialog
+            $scope.showSearchResults = false;
             requestData();
             $timeout(function () {
                 processData();
                 $log.debug($scope.streamers);
+                $scope.showSearchResults = true;
             }, 2000);
         };
 
@@ -327,5 +327,13 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
 
         $scope.onCardClick = function(streamer){
             $window.open(streamer.url, '_blank');
+        }
+
+        $scope.isStreamingColor= function(value){
+            return value ? {color: 'green'} : {color: 'red' }
+        }
+
+        $scope.isMatureColor= function(value){
+            return value ? {color: 'red'} : {color: 'gray'}
         }
     });

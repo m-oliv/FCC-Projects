@@ -11,22 +11,46 @@
 
 <body layout="row" ng-app="fccTwitch" ng-cloak>
   <div ng-controller="TwitchDashboardController" ng-cloak flex="100">
-    <md-toolbar class="md-hue-2" layout="column" layout-align="center center">
+    <md-toolbar class="md-hue-2" layout="column" layout-align="center center" ng-show="!showSearch">
       <div class="md-toolbar-tools">
         <h2 flex md-truncate layout-align="center">
-          <md-icon class="mdi mdi-twitch mdi-24px"></md-icon> Twitch Viewer</h2>
-        <md-button class="md-icon-button" style="color: white;">
-          <md-icon class="mdi mdi-refresh mdi-24px" ng-click="onRefreshPageDataClicked()"></md-icon>
+          <md-button class="md-icon-button" style="color: white;">
+            <md-icon class="mdi mdi-twitch mdi-24px" ng-click="onRefreshPageDataClicked()"></md-icon>
+          </md-button>
+          Twitch Viewer
+        </h2>
+        <md-button class="md-icon-button" style="color: white;" ng-click="showSearch = !showSearch">
+          <md-icon class="mdi mdi-magnify mdi-24px"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
+    
+    <md-toolbar class="md-hue-1" ng-show="showSearch">
+      <div class="md-toolbar-tools">
+        <md-button class="md-icon-button" ng-click="showSearch = !showSearch" aria-label="Back">
+          <md-icon class="mdi mdi-close mdi-24px"></md-icon>
+        </md-button>
+        <md-input-container md-theme="input" flex>
+          <label>&nbsp;</label>
+          <input ng-model="searchTerm" placeholder="Search Channels">
+        </md-input-container>
+        <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
+          <md-icon class="mdi mdi-magnify mdi-24px"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+
     <md-content layout="column">
-      <md-tabs md-dynamic-height md-border-bottom>
+      <div layout="row" layout-sm="column" layout-align="space-around" ng-show="!showSearchResults">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+      </div>
+      <md-tabs md-dynamic-height md-border-bottom ng-show="showSearchResults">
         <md-tab label="All">
           <md-content class="md-padding">
             <md-grid-list md-cols-lg="3" md-cols="3" md-cols-gt-sm="2" md-cols-xs="1" md-gutter="1em" md-row-height="4:3">
               <md-grid-tile ng-repeat="streamer in streamers" md-colspan-gt-sm="1" md-rowspan-gt-sm="1" md-colspan-xs="3" mg-rowspan-xs="2">
-                <md-card flex="100" ng-show="showSearchResults">
+                <md-card flex="100">
                   <md-card-title ng-click="onCardClick(streamer)">
                     <md-card-title-text>
                       <span class="md-headline">{{::streamer.name}}</span>
@@ -49,11 +73,13 @@
                     <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked()">
                       <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" aria-label="mature content">
-                      <md-icon class="mdi mdi-alert-circle mdi-24px"></md-icon>
+                    <md-button class="md-icon-button" aria-label="mature content" ng-disabled="true">
+                      <md-icon class="mdi mdi-alert-circle mdi-24px" 
+                      ng-style="isMatureColor(streamer.isMature)"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
-                      <md-icon class="mdi mdi-record mdi-24px"></md-icon>
+                      <md-icon class="mdi mdi-record mdi-24px" 
+                      ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
                     </md-button>
                   </md-card-actions>
                 </md-card>
@@ -64,8 +90,8 @@
         <md-tab label="Online">
           <md-content class="md-padding">
             <md-grid-list md-cols-lg="3" md-cols="3" md-cols-gt-sm="2" md-cols-xs="1" md-gutter="1em" md-row-height="4:3">
-              <md-grid-tile ng-repeat="streamer in streamers | filter:{isStreaming: true}" md-colspan-gt-sm="1" md-rowspan-gt-sm="1" md-colspan-xs="3" mg-rowspan-xs="2">
-                <md-card flex="100" ng-show="showSearchResults">
+              <md-grid-tile ng-repeat="streamer in streamers" md-colspan-gt-sm="1" md-rowspan-gt-sm="1" md-colspan-xs="3" mg-rowspan-xs="2">
+                <md-card flex="100">
                   <md-card-title ng-click="onCardClick(streamer)">
                     <md-card-title-text>
                       <span class="md-headline">{{::streamer.name}}</span>
@@ -88,11 +114,13 @@
                     <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked()">
                       <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" aria-label="mature content">
-                      <md-icon class="mdi mdi-alert-circle mdi-24px"></md-icon>
+                    <md-button class="md-icon-button" aria-label="mature content" ng-disabled="true">
+                      <md-icon class="mdi mdi-alert-circle mdi-24px" 
+                      ng-style="isMatureColor(streamer.isMature)"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
-                      <md-icon class="mdi mdi-record mdi-24px"></md-icon>
+                      <md-icon class="mdi mdi-record mdi-24px" 
+                      ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
                     </md-button>
                   </md-card-actions>
                 </md-card>
@@ -103,8 +131,8 @@
         <md-tab label="Offline">
           <md-content class="md-padding">
             <md-grid-list md-cols-lg="3" md-cols="3" md-cols-gt-sm="2" md-cols-xs="1" md-gutter="1em" md-row-height="4:3">
-              <md-grid-tile ng-repeat="streamer in streamers | filter:{isStreaming: false}" md-colspan-gt-sm="1" md-rowspan-gt-sm="1" md-colspan-xs="3" mg-rowspan-xs="2">
-                <md-card flex="100" ng-show="showSearchResults">
+              <md-grid-tile ng-repeat="streamer in streamers" md-colspan-gt-sm="1" md-rowspan-gt-sm="1" md-colspan-xs="3" mg-rowspan-xs="2">
+                <md-card flex="100">
                   <md-card-title ng-click="onCardClick(streamer)">
                     <md-card-title-text>
                       <span class="md-headline">{{::streamer.name}}</span>
@@ -127,11 +155,13 @@
                     <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked()">
                       <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" aria-label="mature content">
-                      <md-icon class="mdi mdi-alert-circle mdi-24px"></md-icon>
+                    <md-button class="md-icon-button" aria-label="mature content" ng-disabled="true">
+                      <md-icon class="mdi mdi-alert-circle mdi-24px" 
+                      ng-style="isMatureColor(streamer.isMature)"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
-                      <md-icon class="mdi mdi-record mdi-24px"></md-icon>
+                      <md-icon class="mdi mdi-record mdi-24px" 
+                      ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
                     </md-button>
                   </md-card-actions>
                 </md-card>
