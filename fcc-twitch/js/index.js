@@ -94,15 +94,18 @@ angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService
     });
 
 angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fccTwitch.services.UtilService'])
-    .controller('TwitchDashboardController', function ($scope, $log, $q, $timeout, HttpService, UtilService) {
+    .controller('TwitchDashboardController', function ($scope, $log, $q, $timeout, $window, HttpService, UtilService) {
         $scope.grid = [
             [1, 2, 3],
             [4, 5, 6],
             [7, 8, 9]
         ];
-
+        $scope.showSearchResults = false;
         $scope.streamers = [];
 
+        $scope.logoStyle = {
+            'border-radius': '50%'
+        }
         var userData = [],
             streamData = [],
             channelData = [];
@@ -124,8 +127,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             isMature: false,
             url: ''
         };
-        //var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-        var users = ["ESL_SC2", "freecodecamp", "brunofin"];
+        var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+        //var users = ["ESL_SC2", "freecodecamp", "brunofin"];
 
         // TODO handle invalid users / 404s
 
@@ -140,7 +143,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 processData();
                 $log.debug($scope.streamers);
                 $scope.grid = getStreamerGrid();
-            }, 5000);
+                $scope.showSearchResults = true;
+            }, 2000);
         }
 
         $scope.onRefreshPageDataClicked = function () {
@@ -149,7 +153,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             $timeout(function () {
                 processData();
                 $log.debug($scope.streamers);
-            }, 5000);
+            }, 2000);
         };
 
         function requestData() {
@@ -187,7 +191,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                         streamerInfo.isStreaming = true;
                         streamerInfo.viewers = channelData[k].viewers;
                         streamerInfo.game = channelData[k].game;
-                        streamerInfo.fps = channelData[k].fps;
+                        streamerInfo.fps = Math.round(channelData[k].fps);
                         break;
                     }
                 }
@@ -305,9 +309,9 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         function getStreamerGrid() {
             var grid = [];
             var tempGridLine = [];
-            
+
             var i, j, temparray, chunk = 3;
-            
+
             for (i = 0, j = $scope.streamers.length; i < j; i += chunk) {
                 tempGridLine = $scope.streamers.slice(i, i + chunk);
                 // do whatever
@@ -315,5 +319,13 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             }
 
             return grid;
+        }
+
+        $scope.onMoreInfoButtonClicked = function () {
+            // TODO create dialog that contains the user bio and misc info
+        }
+
+        $scope.onCardClick = function(streamer){
+            $window.open(streamer.url, '_blank');
         }
     });
