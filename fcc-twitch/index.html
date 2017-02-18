@@ -13,7 +13,8 @@
   <div ng-controller="TwitchDashboardController" ng-cloak flex="100">
     <md-toolbar class="md-hue-2" layout="column" layout-align="center center">
       <div class="md-toolbar-tools">
-        <h2 flex md-truncate layout-align="center"> <md-icon class="mdi mdi-twitch mdi-24px"></md-icon> Twitch Viewer</h2>
+        <h2 flex md-truncate layout-align="center">
+          <md-icon class="mdi mdi-twitch mdi-24px"></md-icon> Twitch Viewer</h2>
         <md-button class="md-icon-button" style="color: white;">
           <md-icon class="mdi mdi-refresh mdi-24px" ng-click="onRefreshPageDataClicked()"></md-icon>
         </md-button>
@@ -23,68 +24,119 @@
       <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="All">
           <md-content class="md-padding">
-            <div ng-repeat="row in grid" flex layout="row">
-              <div ng-repeat="item in row" flex layout="row" layout-align="center center" layout-margin class="box">
-                <md-card flex="100">
-                  <md-card-title>
+            <md-grid-list md-cols-lg="3" md-cols="3" md-cols-gt-sm="2" md-cols-xs="1" md-gutter="1em" md-row-height="4:3">
+              <md-grid-tile ng-repeat="streamer in streamers" md-colspan-gt-sm="1" md-rowspan-gt-sm="1" md-colspan-xs="3" mg-rowspan-xs="2">
+                <md-card flex="100" ng-show="showSearchResults">
+                  <md-card-title ng-click="onCardClick(streamer)">
                     <md-card-title-text>
-                      <span class="md-headline">{{::item.name}}</span>
+                      <span class="md-headline">{{::streamer.name}}</span>
+                      <span class="md-subheader">{{::streamer.language}}</span>
+                      <span class="md-subheader">
+                        <p><b>Game:</b> {{::streamer.game}} </p>
+                        <p><b>FPS: </b>{{::streamer.fps}}</p>
+                      </span>
                     </md-card-title-text>
-                    <md-card-title-media>
-                      <div class="md-media-lg card-media"><img src="{{::item.logo}}" alt="streamer logo"></div>
+                    <md-card-title-media ng-click="onCardClick(streamer)">
+                      <div class="md-media-lg card-media">
+                        <img ng-src="{{::streamer.logo}}" alt="streamer logo" ng-style="logoStyle">
+                      </div>
                     </md-card-title-media>
                   </md-card-title>
+                  <md-card-content ng-click="onCardClick(streamer)">
+                    <p><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                  </md-card-content>
                   <md-card-actions layout="row" layout-align="end center">
-                    <md-button class="md-primary md-raised">Action 1</md-button>
-                    <md-button class="md-primary md-raised">Action 2</md-button>
+                    <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked()">
+                      <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="mature content">
+                      <md-icon class="mdi mdi-alert-circle mdi-24px"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
+                      <md-icon class="mdi mdi-record mdi-24px"></md-icon>
+                    </md-button>
                   </md-card-actions>
                 </md-card>
-              </div>
-            </div>
+              </md-grid-tile>
+            </md-grid-list>
           </md-content>
         </md-tab>
         <md-tab label="Online">
           <md-content class="md-padding">
-            <div ng-repeat="row in grid" flex layout="row">
-              <div ng-repeat="item in row | filter:{isStreaming: true}" flex layout="row" layout-align="center center" layout-margin class="box">
-                <md-card flex="100">
-                  <md-card-title>
+            <md-grid-list md-cols-lg="3" md-cols="3" md-cols-gt-sm="2" md-cols-xs="1" md-gutter="1em" md-row-height="4:3">
+              <md-grid-tile ng-repeat="streamer in streamers | filter:{isStreaming: true}" md-colspan-gt-sm="1" md-rowspan-gt-sm="1" md-colspan-xs="3" mg-rowspan-xs="2">
+                <md-card flex="100" ng-show="showSearchResults">
+                  <md-card-title ng-click="onCardClick(streamer)">
                     <md-card-title-text>
-                      <span class="md-headline">{{::item.name}}</span>
+                      <span class="md-headline">{{::streamer.name}}</span>
+                      <span class="md-subheader">{{::streamer.language}}</span>
+                      <span class="md-subheader">
+                        <p><b>Game:</b> {{::streamer.game}} </p>
+                        <p><b>FPS: </b>{{::streamer.fps}}</p>
+                      </span>
                     </md-card-title-text>
-                    <md-card-title-media>
-                      <div class="md-media-lg card-media"><img src="{{::item.logo}}" alt="streamer logo"></div>
+                    <md-card-title-media ng-click="onCardClick(streamer)">
+                      <div class="md-media-lg card-media">
+                        <img ng-src="{{::streamer.logo}}" alt="streamer logo" ng-style="logoStyle">
+                      </div>
                     </md-card-title-media>
                   </md-card-title>
+                  <md-card-content ng-click="onCardClick(streamer)">
+                    <p><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                  </md-card-content>
                   <md-card-actions layout="row" layout-align="end center">
-                    <md-button class="md-primary md-raised">Action 1</md-button>
-                    <md-button class="md-primary md-raised">Action 2</md-button>
+                    <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked()">
+                      <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="mature content">
+                      <md-icon class="mdi mdi-alert-circle mdi-24px"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
+                      <md-icon class="mdi mdi-record mdi-24px"></md-icon>
+                    </md-button>
                   </md-card-actions>
                 </md-card>
-              </div>
-            </div>
+              </md-grid-tile>
+            </md-grid-list>
           </md-content>
         </md-tab>
         <md-tab label="Offline">
           <md-content class="md-padding">
-            <div ng-repeat="row in grid" flex layout="row">
-              <div ng-repeat="item in row | filter:{isStreaming: false}" flex layout="row" layout-align="center center" layout-margin class="box">
-                <md-card flex="100">
-                  <md-card-title>
+            <md-grid-list md-cols-lg="3" md-cols="3" md-cols-gt-sm="2" md-cols-xs="1" md-gutter="1em" md-row-height="4:3">
+              <md-grid-tile ng-repeat="streamer in streamers | filter:{isStreaming: false}" md-colspan-gt-sm="1" md-rowspan-gt-sm="1" md-colspan-xs="3" mg-rowspan-xs="2">
+                <md-card flex="100" ng-show="showSearchResults">
+                  <md-card-title ng-click="onCardClick(streamer)">
                     <md-card-title-text>
-                      <span class="md-headline">{{::item.name}}</span>
+                      <span class="md-headline">{{::streamer.name}}</span>
+                      <span class="md-subheader">{{::streamer.language}}</span>
+                      <span class="md-subheader">
+                        <p><b>Game:</b> {{::streamer.game}} </p>
+                        <p><b>FPS: </b>{{::streamer.fps}}</p>
+                      </span>
                     </md-card-title-text>
-                    <md-card-title-media>
-                      <div class="md-media-lg card-media"><img src="{{::item.logo}}" alt="streamer logo"></div>
+                    <md-card-title-media ng-click="onCardClick(streamer)">
+                      <div class="md-media-lg card-media">
+                        <img ng-src="{{::streamer.logo}}" alt="streamer logo" ng-style="logoStyle">
+                      </div>
                     </md-card-title-media>
                   </md-card-title>
+                  <md-card-content ng-click="onCardClick(streamer)">
+                    <p><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                  </md-card-content>
                   <md-card-actions layout="row" layout-align="end center">
-                    <md-button class="md-primary md-raised">Action 1</md-button>
-                    <md-button class="md-primary md-raised">Action 2</md-button>
+                    <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked()">
+                      <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="mature content">
+                      <md-icon class="mdi mdi-alert-circle mdi-24px"></md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
+                      <md-icon class="mdi mdi-record mdi-24px"></md-icon>
+                    </md-button>
                   </md-card-actions>
                 </md-card>
-              </div>
-            </div>
+              </md-grid-tile>
+            </md-grid-list>
           </md-content>
         </md-tab>
       </md-tabs>
