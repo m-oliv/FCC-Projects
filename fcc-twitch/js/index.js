@@ -1,5 +1,18 @@
 'use strict';
 
+angular.module('fccTwitch.services.DialogService', [])
+.service('DialogService', function($mdDialog, $log){
+    this.showAlert = function (event, title, description, ok) {
+            var alert = $mdDialog.alert()
+                .title(title)
+                .textContent(description)
+                .ok(ok)
+                .targetEvent(event);
+
+            $mdDialog.show(alert);
+        };
+});
+
 angular.module('fccTwitch.services.UtilService', [])
     .service('UtilService', function ($mdToast) {
         this.showToastMessage = function (message) {
@@ -93,8 +106,10 @@ angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService
         }
     });
 
-angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fccTwitch.services.UtilService'])
-    .controller('TwitchDashboardController', function ($scope, $log, $q, $timeout, $window, HttpService, UtilService) {
+angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fccTwitch.services.UtilService',
+'fccTwitch.services.DialogService'])
+    .controller('TwitchDashboardController', function ($scope, $log, $q, $timeout, $window, HttpService, 
+    UtilService, DialogService) {
         
         $scope.showSearch = false;
         $scope.searchTerm = "";
@@ -321,8 +336,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             return grid;
         }
 
-        $scope.onMoreInfoButtonClicked = function () {
-            // TODO create dialog that contains the user bio and misc info
+        $scope.onMoreInfoButtonClicked = function (username, bio) {
+            DialogService.showAlert(null, username+"'s bio", bio, "close");
         }
 
         $scope.onCardClick = function(streamer){
