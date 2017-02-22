@@ -15,11 +15,13 @@
       <div class="md-toolbar-tools">
         <h2 flex md-truncate layout-align="center">
           <md-button class="md-icon-button" style="color: white;">
+            <md-tooltip md-direction="bottom">Refresh</md-tooltip>
             <md-icon class="mdi mdi-twitch mdi-24px" ng-click="onRefreshPageDataClicked()"></md-icon>
           </md-button>
           Twitch Viewer
         </h2>
         <md-button class="md-icon-button" style="color: white;" ng-click="showSearch = !showSearch">
+          <md-tooltip md-direction="bottom">Search Channels</md-tooltip>
           <md-icon class="mdi mdi-magnify mdi-24px"></md-icon>
         </md-button>
       </div>
@@ -27,6 +29,7 @@
     <md-toolbar class="md-hue-1" ng-show="showSearch">
       <div class="md-toolbar-tools">
         <md-button class="md-icon-button" ng-click="showSearch = !showSearch" aria-label="Back">
+          <md-tooltip md-direction="bottom">Close</md-tooltip>
           <md-icon class="mdi mdi-close mdi-24px"></md-icon>
         </md-button>
         <md-input-container md-theme="input" flex>
@@ -34,6 +37,7 @@
           <input ng-model="searchTerm" placeholder="Search Channels">
         </md-input-container>
         <md-button class="md-icon-button" aria-label="Search" ng-click="showSearch = !showSearch">
+          <md-tooltip md-direction="bottom">Search</md-tooltip>
           <md-icon class="mdi mdi-magnify mdi-24px"></md-icon>
         </md-button>
       </div>
@@ -53,9 +57,8 @@
                       <span class="md-headline">{{::streamer.name}}</span>
                       <span class="md-subheader">{{::streamer.language}}</span>
                       <span class="md-subheader">
-                        <p><b>Game:</b> {{::streamer.game}} </p>
-                        <p><b>FPS: </b>{{::streamer.fps}}</p>
-                        <p><b>Now Watching:</b> {{streamer.viewers}}</p>
+                        <p ng-if="streamer.isStreaming"><b>Game:</b> {{::streamer.game}} <b>(@ {{::streamer.fps}} FPS)</b></p>
+                        <p ng-if="streamer.isStreaming"><b>Now Watching:</b> {{streamer.viewers}}</p>
                         <p><b>Total Views:</b> {{streamer.streamViews}}</p>
                       </span>
                     </md-card-title-text>
@@ -66,16 +69,20 @@
                     </md-card-title-media>
                   </md-card-title>
                   <md-card-content ng-click="onCardClick(streamer)">
-                    <p><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                    <p ng-if="streamer.isStreaming"><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                    <p ng-if="!streamer.isStreaming"><b>Offline</b></p>
                   </md-card-content>
                   <md-card-actions layout="row" layout-align="end center">
                     <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked(streamer.name, streamer.bio)">
+                      <md-tooltip md-direction="bottom">More Information</md-tooltip>
                       <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" aria-label="mature content" ng-disabled="true">
+                    <md-button class="md-icon-button" aria-label="mature content">
+                      <md-tooltip md-direction="bottom">Mature Content</md-tooltip>
                       <md-icon class="mdi mdi-alert-circle mdi-24px" ng-style="isMatureColor(streamer.isMature)"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
+                      <md-tooltip md-direction="bottom">Streaming</md-tooltip>
                       <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
                     </md-button>
                   </md-card-actions>
@@ -95,9 +102,9 @@
                       <span class="md-headline">{{::streamer.name}}</span>
                       <span class="md-subheader">{{::streamer.language}}</span>
                       <span class="md-subheader">
-                        <p><b>Game:</b> {{::streamer.game}} </p>
-                        <p><b>FPS: </b>{{::streamer.fps}}</p>
-                        <p><b>{{streamer.viewers}}</b></p>
+                        <p ng-if="streamer.isStreaming"><b>Game:</b> {{::streamer.game}} <b>(@ {{::streamer.fps}} FPS)</b></p>
+                        <p ng-if="streamer.isStreaming"><b>Now Watching:</b> {{streamer.viewers}}</p>
+                        <p><b>Total Views:</b> {{streamer.streamViews}}</p>
                       </span>
                     </md-card-title-text>
                     <md-card-title-media ng-click="onCardClick(streamer)">
@@ -107,16 +114,20 @@
                     </md-card-title-media>
                   </md-card-title>
                   <md-card-content ng-click="onCardClick(streamer)">
-                    <p><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                    <p ng-if="streamer.isStreaming"><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                    <p ng-if="!streamer.isStreaming"><b>Offline</b></p>
                   </md-card-content>
                   <md-card-actions layout="row" layout-align="end center">
                     <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked(streamer.name, streamer.bio)">
+                      <md-tooltip md-direction="bottom">More Information</md-tooltip>
                       <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" aria-label="mature content" ng-disabled="true">
+                    <md-button class="md-icon-button" aria-label="mature content">
+                      <md-tooltip md-direction="bottom">Mature Content</md-tooltip>
                       <md-icon class="mdi mdi-alert-circle mdi-24px" ng-style="isMatureColor(streamer.isMature)"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
+                      <md-tooltip md-direction="bottom">Streaming</md-tooltip>
                       <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
                     </md-button>
                   </md-card-actions>
@@ -135,9 +146,9 @@
                       <span class="md-headline">{{::streamer.name}}</span>
                       <span class="md-subheader">{{::streamer.language}}</span>
                       <span class="md-subheader">
-                        <p><b>Game:</b> {{::streamer.game}} </p>
-                        <p><b>FPS: </b>{{::streamer.fps}}</p>
-                        <p><b>{{streamer.viewers}}</b></p>
+                        <p ng-if="streamer.isStreaming"><b>Game:</b> {{::streamer.game}} <b>(@ {{::streamer.fps}} FPS)</b></p>
+                        <p ng-if="streamer.isStreaming"><b>Now Watching:</b> {{streamer.viewers}}</p>
+                        <p><b>Total Views:</b> {{streamer.streamViews}}</p>
                       </span>
                     </md-card-title-text>
                     <md-card-title-media ng-click="onCardClick(streamer)">
@@ -147,16 +158,20 @@
                     </md-card-title-media>
                   </md-card-title>
                   <md-card-content ng-click="onCardClick(streamer)">
-                    <p><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                    <p ng-if="streamer.isStreaming"><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
+                    <p ng-if="!streamer.isStreaming"><b>Offline</b></p>
                   </md-card-content>
                   <md-card-actions layout="row" layout-align="end center">
                     <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked(streamer.name, streamer.bio)">
+                      <md-tooltip md-direction="bottom">More Information</md-tooltip>
                       <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" aria-label="mature content" ng-disabled="true">
+                    <md-button class="md-icon-button" aria-label="mature content">
+                      <md-tooltip md-direction="bottom">Mature Content</md-tooltip>
                       <md-icon class="mdi mdi-alert-circle mdi-24px" ng-style="isMatureColor(streamer.isMature)"></md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)">
+                      <md-tooltip md-direction="bottom">Streaming</md-tooltip>
                       <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
                     </md-button>
                   </md-card-actions>

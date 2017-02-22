@@ -150,7 +150,6 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         });
 
         function init() {
-            // TODO loading dialog
             requestData();
             $timeout(function () {
                 processData();
@@ -161,7 +160,6 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         }
 
         $scope.onRefreshPageDataClicked = function () {
-            // TODO loading dialog
             $scope.showSearchResults = false;
             requestData();
             $timeout(function () {
