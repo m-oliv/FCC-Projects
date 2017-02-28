@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('fccTwitch.services.DialogService', [])
-.service('DialogService', function($mdDialog, $log){
-    this.showAlert = function (event, title, description, ok) {
+    .service('DialogService', function ($mdDialog, $log) {
+        this.showAlert = function (event, title, description, ok) {
             var alert = $mdDialog.alert()
                 .title(title)
                 .textContent(description)
@@ -11,7 +11,7 @@ angular.module('fccTwitch.services.DialogService', [])
 
             $mdDialog.show(alert);
         };
-});
+    });
 
 angular.module('fccTwitch.services.UtilService', [])
     .service('UtilService', function ($mdToast) {
@@ -107,10 +107,11 @@ angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService
     });
 
 angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fccTwitch.services.UtilService',
-'fccTwitch.services.DialogService'])
-    .controller('TwitchDashboardController', function ($scope, $log, $q, $timeout, $window, HttpService, 
-    UtilService, DialogService) {
-        
+        'fccTwitch.services.DialogService'
+    ])
+    .controller('TwitchDashboardController', function ($scope, $log, $q, $timeout, $window, HttpService,
+        UtilService, DialogService) {
+
         $scope.showSearch = false;
         $scope.searchTerm = "";
         $scope.showSearchResults = false;
@@ -128,6 +129,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             name: '',
             bio: "TBD",
             logo: '',
+            isValidUser: false,
 
             isStreaming: false,
             viewers: 0,
@@ -140,10 +142,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             isMature: false,
             url: ''
         };
-        var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-        //var users = ["ESL_SC2", "freecodecamp", "brunofin"];
-
-        // TODO handle invalid users / 404s
+        var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", 
+        "noobs2ninjas", "brunofin","comster404"];
 
         angular.element(document).ready(function () {
             init();
@@ -154,7 +154,6 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             $timeout(function () {
                 processData();
                 $log.debug($scope.streamers);
-                $scope.grid = getStreamerGrid();
                 $scope.showSearchResults = true;
             }, 2000);
         }
@@ -187,37 +186,44 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
 
                 clearData();
 
-                for (var j = 0; j < userData.length; j++) {
-                    if (userData[j].username === users[i].toLocaleLowerCase()) {
-                        streamerInfo.username = userData[j].username;
-                        streamerInfo.name = userData[j].name;
-                        if (userData[j].bio !== null && userData[j].bio !== undefined && userData[j].bio !== '') {
-                            streamerInfo.bio = userData[j].bio;
+                if (containsUser(users[i].toLocaleLowerCase())) {
+
+                    streamerInfo.isValidUser = true;
+                    for (var j = 0; j < userData.length; j++) {
+                        if (userData[j].username === users[i].toLocaleLowerCase()) {
+                            streamerInfo.username = userData[j].username;
+                            streamerInfo.name = userData[j].name;
+                            if (userData[j].bio !== null && userData[j].bio !== undefined && userData[j].bio !== '') {
+                                streamerInfo.bio = userData[j].bio;
+                            }
+                            streamerInfo.logo = userData[j].logo;
+                            break;
                         }
-                        streamerInfo.logo = userData[j].logo;
-                        break;
                     }
-                }
 
-                for (var k = 0; k < channelData.length; k++) {
-                    if (channelData[k].user === users[i].toLocaleLowerCase()) {
-                        streamerInfo.isStreaming = true;
-                        streamerInfo.viewers = channelData[k].viewers;
-                        streamerInfo.game = channelData[k].game;
-                        streamerInfo.fps = Math.round(channelData[k].fps);
-                        break;
+                    for (var k = 0; k < channelData.length; k++) {
+                        if (channelData[k].user === users[i].toLocaleLowerCase()) {
+                            streamerInfo.isStreaming = true;
+                            streamerInfo.viewers = channelData[k].viewers;
+                            streamerInfo.game = channelData[k].game;
+                            streamerInfo.fps = Math.round(channelData[k].fps);
+                            break;
+                        }
                     }
-                }
 
-                for (var l = 0; l < streamData.length; l++) {
-                    if (streamData[l].user === users[i].toLocaleLowerCase()) {
-                        streamerInfo.isMature = streamData[l].isMature;
-                        streamerInfo.language = streamData[l].language;
-                        streamerInfo.nowStreaming = streamData[l].nowStreaming;
-                        streamerInfo.streamViews = streamData[l].streamViews;
-                        streamerInfo.url = streamData[l].url;
-                        break;
+                    for (var l = 0; l < streamData.length; l++) {
+                        if (streamData[l].user === users[i].toLocaleLowerCase()) {
+                            streamerInfo.isMature = streamData[l].isMature;
+                            streamerInfo.language = streamData[l].language;
+                            streamerInfo.nowStreaming = streamData[l].nowStreaming;
+                            streamerInfo.streamViews = streamData[l].streamViews;
+                            streamerInfo.url = streamData[l].url;
+                            break;
+                        }
                     }
+                } else {
+                    streamerInfo.username = users[i];
+                    streamerInfo.name = users[i];
                 }
                 $scope.streamers.push(streamerInfo);
             }
@@ -228,7 +234,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 username: '',
                 name: '',
                 bio: "TBD",
-                logo: '',
+                logo: 'https://dl.dropboxusercontent.com/u/12474798/Placeholder_couple_superhero_final.png',
+                isValidUser: false,
 
                 isStreaming: false,
                 viewers: 0,
@@ -319,34 +326,38 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             UtilService.showToastMessage("Error retrieving stream data.");
         }
 
-        function getStreamerGrid() {
-            var grid = [];
-            var tempGridLine = [];
-
-            var i, j, temparray, chunk = 3;
-
-            for (i = 0, j = $scope.streamers.length; i < j; i += chunk) {
-                tempGridLine = $scope.streamers.slice(i, i + chunk);
-                // do whatever
-                grid.push(tempGridLine);
-            }
-
-            return grid;
-        }
-
         $scope.onMoreInfoButtonClicked = function (username, bio) {
-            DialogService.showAlert(null, username+"'s bio", bio, "close");
+            DialogService.showAlert(null, username + "'s bio", bio, "close");
         }
 
-        $scope.onCardClick = function(streamer){
-            $window.open(streamer.url, '_blank');
+        $scope.onCardClick = function (streamer) {
+            if(stramer.isValidUser){
+                $window.open(streamer.url, '_blank');
+            }
         }
 
-        $scope.isStreamingColor= function(value){
-            return value ? {color: 'green'} : {color: 'red' }
+        $scope.isStreamingColor = function (value) {
+            return value ? {
+                color: 'green'
+            } : {
+                color: 'red'
+            }
         }
 
-        $scope.isMatureColor= function(value){
-            return value ? {color: 'red'} : {color: 'gray'}
+        $scope.isMatureColor = function (value) {
+            return value ? {
+                color: 'red'
+            } : {
+                color: 'gray'
+            }
+        }
+
+        function containsUser(user) {
+            for (var i = 0; i < userData.length; i++) {
+                if (userData[i].username === user) {
+                    return true;
+                }
+            }
+            return false;
         }
     });
