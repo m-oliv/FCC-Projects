@@ -116,6 +116,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         $scope.searchTerm = "";
         $scope.showSearchResults = false;
         $scope.streamers = [];
+        $scope.searchResults = [];
 
         $scope.logoStyle = {
             'border-radius': '50%'
@@ -152,7 +153,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         function init() {
             requestData();
             $timeout(function () {
-                processData();
+                processData(users, userData, channelData,streamData, $scope.streamers);
                 $log.debug($scope.streamers);
                 $scope.showSearchResults = true;
             }, 2000);
@@ -162,7 +163,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             $scope.showSearchResults = false;
             requestData();
             $timeout(function () {
-                processData();
+                processData(users, userData, channelData,streamData, $scope.streamers);
                 $log.debug($scope.streamers);
                 $scope.showSearchResults = true;
             }, 2000);
@@ -181,7 +182,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             $log.debug(streamData);
         }
 
-        function processData() {
+        function processData(users, userData, channelData, streamData, results) {
             for (var i = 0; i < users.length; i++) {
 
                 clearData();
@@ -225,8 +226,14 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                     streamerInfo.username = users[i];
                     streamerInfo.name = users[i];
                 }
-                $scope.streamers.push(streamerInfo);
+                results.push(streamerInfo);
             }
+        }
+
+        function clearTemporarySearchData(){
+            userData = [];
+            channelData = [];
+            streamData = [];
         }
 
         function clearData() {
@@ -359,5 +366,18 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 }
             }
             return false;
+        }
+
+        $scope.onSearch = function(){
+            
+            clearTemporarySearchData();
+
+            getUserInformation($scope.searchTerm);
+
+            $timeout(function () {
+                processData([$scope.searchTerm], userData, channelData,streamData, $scope.searchResults);
+                $log.debug($scope.searchResults);
+                $scope.showSearchResults = true;
+            }, 2000);
         }
     });
