@@ -16,7 +16,7 @@ angular.module('fccTwitch.services.DialogService', [])
 angular.module('fccTwitch.services.UtilService', [])
     .service('UtilService', function ($mdToast) {
         this.showToastMessage = function (message) {
-            if (isDefined(message) && !isNull(message)) {
+            if (message !== undefined && message !== null) {
                 $mdToast.show($mdToast.simple()
                     .textContent(message)
                     .position('bottom')
@@ -28,9 +28,9 @@ angular.module('fccTwitch.services.UtilService', [])
 
 angular.module('fccTwitch.services.UrlService', [])
     .service('UrlService', function () {
-        this.userInfoUrl = 'https://wind-bow.gomix.me/twitch-api/users/';
-        this.channelInfoUrl = 'https://wind-bow.gomix.me/twitch-api/streams/';
-        this.streamInfoUrl = 'https://wind-bow.gomix.me/twitch-api/channels/';
+        this.userInfoUrl = 'https://wind-bow.glitch.me/twitch-api/users/';
+        this.channelInfoUrl = 'https://wind-bow.glitch.me/twitch-api/streams/';
+        this.streamInfoUrl = 'https://wind-bow.glitch.me/twitch-api/channels/';
 
         this.getUserInfoUrl = function () {
             return this.userInfoUrl;
@@ -241,7 +241,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 username: '',
                 name: '',
                 bio: "TBD",
-                logo: 'https://dl.dropboxusercontent.com/u/12474798/Placeholder_couple_superhero_final.png',
+                logo: 'https://dl.dropbox.com/s/ed6uxviarg1e7nf/Placeholder_couple_superhero_final.png?dl=0',
                 isValidUser: false,
 
                 isStreaming: false,
