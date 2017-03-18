@@ -368,16 +368,23 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             return false;
         }
 
-        $scope.onSearch = function(){
-            
+        $scope.onSearch = function(searchUser){
+            $scope.searchResults = [];
+
+            $scope.showSearch = !$scope.showSearch;
+
             clearTemporarySearchData();
 
-            getUserInformation($scope.searchTerm);
+            getUserInformation(searchUser);
 
             $timeout(function () {
-                processData([$scope.searchTerm], userData, channelData,streamData, $scope.searchResults);
+                processData([searchUser], userData, channelData,streamData, $scope.searchResults);
                 $log.debug($scope.searchResults);
                 $scope.showSearchResults = true;
             }, 2000);
+
+            $scope.searchTerm = "";
+            $log.debug("Search Results:");
+            $log.debug($scope.searchResults);
         }
     });
