@@ -144,7 +144,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             url: ''
         };
         var users = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", 
-        "noobs2ninjas", "brunofin","comster404"];
+        "noobs2ninjas", "brunofin","comster404","omgitsfirefoxx", "bobross", "pokemontcg"];
 
         angular.element(document).ready(function () {
             init();

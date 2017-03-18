@@ -182,7 +182,7 @@
         <md-tab label="Search Results">
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap>
-              <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:false}">
+              <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
