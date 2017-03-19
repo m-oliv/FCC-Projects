@@ -134,6 +134,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         $scope.showSearchResults = false;
         $scope.streamers = [];
         $scope.searchResults = [];
+        $scope.selectedTab = 0;
 
         $scope.logoStyle = {
             'border-radius': '50%'
@@ -402,6 +403,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 $scope.showSearchResults = true;
             }, 2000);
 
+            $scope.selectedTab = 3;
             $scope.searchTerm = "";
             $log.debug("Search Results:");
             $log.debug($scope.searchResults);
