@@ -5,7 +5,7 @@ angular.module('fccTwitch.directives',[])
 
         return function (scope, element, attrs) {
 
-            element.bind("keydown keypress", function (event) {
+            element.bind("keyup", function (event) {
                 if (event.which === 13) {
                     scope.$apply(function () {
                         scope.$eval(attrs.ngEnter);
@@ -124,7 +124,7 @@ angular.module('fccTwitch.services.HttpService', ['fccTwitch.services.UrlService
     });
 
 angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fccTwitch.services.UtilService',
-        'fccTwitch.services.DialogService'
+        'fccTwitch.services.DialogService', 'fccTwitch.directives'
     ])
     .controller('TwitchDashboardController', function ($scope, $log, $q, $timeout, $window, HttpService,
         UtilService, DialogService) {
