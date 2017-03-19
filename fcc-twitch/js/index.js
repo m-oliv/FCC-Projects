@@ -161,6 +161,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
 
         $scope.onRefreshPageDataClicked = function () {
             $scope.showSearchResults = false;
+            $scope.searchTerm = "";
+            $scope.searchResults = [];
             requestData();
             $timeout(function () {
                 processData(users, userData, channelData,streamData, $scope.streamers);
@@ -386,5 +388,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             $scope.searchTerm = "";
             $log.debug("Search Results:");
             $log.debug($scope.searchResults);
-        }
+        };
+
+        
     });
