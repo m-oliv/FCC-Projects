@@ -34,7 +34,8 @@
         </md-button>
         <md-input-container md-theme="input" flex>
           <label>&nbsp;</label>
-          <input ng-model="searchTerm" placeholder="Search Channels">
+          <input ng-model="searchTerm" placeholder="Search Channels"
+          ng-enter="onSearch(searchTerm)">
         </md-input-container>
         <md-button class="md-icon-button" aria-label="Search" 
         ng-click="onSearch(searchTerm)">

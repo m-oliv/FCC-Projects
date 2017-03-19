@@ -1,5 +1,22 @@
 'use strict';
 
+angular.module('fccTwitch.directives',[])
+    .directive('ngEnter', function () { //a directive to 'enter key press' in elements with the "ng-enter" attribute
+
+        return function (scope, element, attrs) {
+
+            element.bind("keydown keypress", function (event) {
+                if (event.which === 13) {
+                    scope.$apply(function () {
+                        scope.$eval(attrs.ngEnter);
+                    });
+
+                    event.preventDefault();
+                }
+            });
+        };
+    })
+
 angular.module('fccTwitch.services.DialogService', [])
     .service('DialogService', function ($mdDialog, $log) {
         this.showAlert = function (event, title, description, ok) {
