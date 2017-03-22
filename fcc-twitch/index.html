@@ -181,7 +181,7 @@
             </div>
           </md-content>
         </md-tab>
-        <md-tab label="Search Results">
+        <md-tab label="Search Results" ng-show="!showSearchResults">
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap>
               <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">

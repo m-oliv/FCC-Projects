@@ -401,9 +401,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 processData([searchUser], userData, channelData,streamData, $scope.searchResults);
                 $log.debug($scope.searchResults);
                 $scope.showSearchResults = true;
+                $scope.selectedTab = 3;
             }, 2000);
-
-            $scope.selectedTab = 3;
             $scope.searchTerm = "";
             $log.debug("Search Results:");
             $log.debug($scope.searchResults);
