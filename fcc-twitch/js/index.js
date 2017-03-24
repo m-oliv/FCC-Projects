@@ -131,10 +131,11 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
 
         $scope.showSearch = false;
         $scope.searchTerm = "";
-        $scope.showSearchResults = false;
+        $scope.showData = false;
         $scope.streamers = [];
         $scope.searchResults = [];
         $scope.selectedTab = 0;
+        $scope.showSearchResults = false;
 
         $scope.logoStyle = {
             'border-radius': '50%'
@@ -173,19 +174,21 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             $timeout(function () {
                 processData(users, userData, channelData,streamData, $scope.streamers);
                 $log.debug($scope.streamers);
-                $scope.showSearchResults = true;
+                $scope.showData = true;
+                $scope.showSearchResults = false;
             }, 2000);
         }
 
         $scope.onRefreshPageDataClicked = function () {
-            $scope.showSearchResults = false;
+            $scope.showData = false;
             $scope.searchTerm = "";
             $scope.searchResults = [];
             requestData();
             $timeout(function () {
                 processData(users, userData, channelData,streamData, $scope.streamers);
                 $log.debug($scope.streamers);
-                $scope.showSearchResults = true;
+                $scope.showData = true;
+                $scope.showSearchResults = false;
             }, 2000);
         };
 

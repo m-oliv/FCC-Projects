@@ -45,10 +45,10 @@
       </div>
     </md-toolbar>
     <md-content layout="column">
-      <div layout="row" layout-sm="column" layout-align="space-around" ng-show="!showSearchResults">
+      <div layout="row" layout-sm="column" layout-align="space-around" ng-show="!showData">
         <md-progress-circular md-mode="indeterminate"></md-progress-circular>
       </div>
-      <md-tabs md-dynamic-height md-border-bottom ng-show="showSearchResults" md-selected="selectedTab">
+      <md-tabs md-dynamic-height md-border-bottom ng-show="showData" md-selected="selectedTab">
         <md-tab label="All">
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap>
@@ -181,7 +181,7 @@
             </div>
           </md-content>
         </md-tab>
-        <md-tab label="Search Results" ng-show="!showSearchResults">
+        <md-tab label="Search Results" ng-if="showSearchResults">
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap>
               <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">
