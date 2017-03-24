@@ -358,7 +358,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
         }
 
         $scope.onCardClick = function (streamer) {
-            if(stramer.isValidUser){
+            if(streamer.isValidUser){
                 $window.open(streamer.url, '_blank');
             }
         }
