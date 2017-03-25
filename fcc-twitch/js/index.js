@@ -400,11 +400,12 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
 
             getUserInformation(searchUser);
 
+            $scope.showSearchResults = true;
+            $scope.selectedTab = 3;
+
             $timeout(function () {
                 processData([searchUser], userData, channelData,streamData, $scope.searchResults);
                 $log.debug($scope.searchResults);
-                $scope.showSearchResults = true;
-                $scope.selectedTab = 3;
             }, 2000);
             $scope.searchTerm = "";
             $log.debug("Search Results:");
