@@ -182,9 +182,9 @@
         </md-tab>
         <md-tab label="Search Results" ng-if="showSearchResults">
           <md-content class="md-padding">
-           <!-- <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="!showSearchResults">
-              <md-progress-circular md-mode="indeterminate" ng-hide="!showSearchResults"></md-progress-circular>
-            </div> -->
+            <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="showSearchResults">
+              <md-progress-circular md-mode="indeterminate" ng-hide="showSearchResults"></md-progress-circular>
+            </div>
             <div class='md-padding' layout="row" layout-wrap>
               <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">
                 <md-card-title ng-click="onCardClick(streamer)">
