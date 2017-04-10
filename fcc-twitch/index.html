@@ -185,6 +185,12 @@
             <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="showSearchResults">
               <md-progress-circular md-mode="indeterminate" ng-hide="showSearchResults"></md-progress-circular>
             </div>
+            <div layout="column" ng-hide="searchResults.length===0" layout-align="center center">
+              <md-button class="md-button md-raised md-primary" aria-label="clear search results" ng-click="clearSearchResults()">
+                    <md-tooltip md-direction="bottom">Clear Search Results</md-tooltip>
+                    <i class="mdi mdi-broom mdi-24px"></i> Clear Search Results
+                  </md-button>
+            </div>
             <div class='md-padding' layout="row" layout-wrap>
               <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">
                 <md-card-title ng-click="onCardClick(streamer)">

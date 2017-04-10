@@ -412,5 +412,10 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             $log.debug($scope.searchResults);
         };
 
+        $scope.clearSearchResults = function(){
+            $scope.showSearchResults = false;
+            $scope.selectedTab = 0;
+            $scope.searchResults = [];
+        };
         
     });
