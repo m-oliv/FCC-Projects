@@ -182,8 +182,8 @@
         </md-tab>
         <md-tab label="Search Results" ng-if="showSearchResults">
           <md-content class="md-padding">
-            <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="showSearchResults">
-              <md-progress-circular md-mode="indeterminate" ng-hide="showSearchResults"></md-progress-circular>
+            <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="!showSearchResults">
+              <md-progress-circular md-mode="indeterminate"></md-progress-circular>
             </div>
             <div layout="column" ng-hide="searchResults.length===0" layout-align="center center">
               <md-button class="md-button md-raised md-primary" aria-label="clear search results" ng-click="clearSearchResults()">
