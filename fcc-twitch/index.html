@@ -15,13 +15,13 @@
     <md-toolbar class="md-hue-2" layout="column" layout-align="center center" ng-show="!showSearch">
       <div class="md-toolbar-tools">
         <h2 flex md-truncate layout-align="center">
-          <md-button class="md-icon-button" style="color: white;">
+          <md-button class="md-icon-button white-button">
             <md-tooltip md-direction="bottom">Refresh</md-tooltip>
             <md-icon class="mdi mdi-twitch mdi-24px" ng-click="onRefreshPageDataClicked()"></md-icon>
           </md-button>
           Twitch Viewer
         </h2>
-        <md-button class="md-icon-button" style="color: white;" ng-click="showSearch = !showSearch">
+        <md-button class="md-icon-button white-button" ng-click="showSearch = !showSearch">
           <md-tooltip md-direction="bottom">Search Channels</md-tooltip>
           <md-icon class="mdi mdi-magnify mdi-24px"></md-icon>
         </md-button>
@@ -33,7 +33,7 @@
           <md-tooltip md-direction="bottom">Close</md-tooltip>
           <md-icon class="mdi mdi-close mdi-24px"></md-icon>
         </md-button>
-        <md-input-container md-theme="input" flex>
+        <md-input-container id="searchInput" md-theme="input" flex>
           <label>&nbsp;</label>
           <input ng-model="searchTerm" placeholder="Search Channels" ng-enter="onSearch(searchTerm)">
         </md-input-container>
@@ -50,7 +50,7 @@
       <md-tabs md-dynamic-height md-border-bottom ng-show="showData" md-selected="selectedTab">
         <md-tab label="All">
           <md-content class="md-padding">
-            <div class='md-padding' layout="row" layout-wrap>
+            <div class='md-padding' layout="row" layout-wrap layout-align="center">
               <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in streamers">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
@@ -94,7 +94,7 @@
         </md-tab>
         <md-tab label="Online">
           <md-content class="md-padding">
-            <div class='md-padding' layout="row" layout-wrap>
+            <div class='md-padding' layout="row" layout-wrap layout-align="center">
               <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:true}">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
@@ -138,7 +138,7 @@
         </md-tab>
         <md-tab label="Offline">
           <md-content class="md-padding">
-            <div class='md-padding' layout="row" layout-wrap>
+            <div class='md-padding' layout="row" layout-wrap layout-align="center">
               <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:false}">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
@@ -182,7 +182,7 @@
         </md-tab>
         <md-tab label="Search Results" ng-if="showSearchResults">
           <md-content class="md-padding">
-            <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="!showSearchResults">
+            <div layout="row" layout-sm="column" layout-align="space-around" ng-hide="!(searchResults.length===0)">
               <md-progress-circular md-mode="indeterminate"></md-progress-circular>
             </div>
             <div layout="column" ng-hide="searchResults.length===0" layout-align="center center">
@@ -191,7 +191,7 @@
                     <i class="mdi mdi-broom mdi-24px"></i> Clear Search Results
                   </md-button>
             </div>
-            <div class='md-padding' layout="row" layout-wrap>
+            <div class='md-padding' layout="row" layout-wrap layout-align="center">
               <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
