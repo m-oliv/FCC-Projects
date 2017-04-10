@@ -5,3 +5,7 @@
 .white-button{
     color: white;
 }
+
+.loading{
+    position: fixed;
+}
