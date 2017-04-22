@@ -222,6 +222,8 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                             }
                             if(userData[j].logo !== null){
                                 streamerInfo.logo = userData[j].logo;
+                            }else{
+                                streamerInfo.logo = 'https://dl.dropbox.com/s/ed6uxviarg1e7nf/Placeholder_couple_superhero_final.png?dl=0';
                             }
                             break;
                         }
@@ -266,7 +268,7 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                 username: '',
                 name: '',
                 bio: "TBD",
-                logo: 'https://dl.dropbox.com/s/ed6uxviarg1e7nf/Placeholder_couple_superhero_final.png?dl=0',
+                logo: 'https://dl.dropbox.com/s/jbtei9f8frx3wdq/Magritte_TheSonOfMan.jpg?dl=0',
                 isValidUser: false,
 
                 isStreaming: false,
@@ -368,12 +370,14 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
             }
         }
 
-        $scope.isStreamingColor = function (value) {
-            return value ? {
+        $scope.isStreamingColor = function (value, valid) {
+            return value && valid? {
                 color: 'green'
-            } : {
+            } : !value && valid ? {
                 color: 'red'
-            }
+            } : {
+                color: 'blue'
+            };
         }
 
         $scope.isMatureColor = function (value) {

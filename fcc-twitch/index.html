@@ -55,8 +55,8 @@
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
-                    <span class="md-subheader">{{::streamer.language}}</span>
-                    <span class="md-subheader">
+                    <span class="md-subheader white-background">{{::streamer.language}}</span>
+                    <span class="md-subheader white-background">
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Game:</b> {{::streamer.game}} <b>(@ {{::streamer.fps}} FPS)</b></p>
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Now Watching:</b> {{streamer.viewers}}</p>
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Total Views:</b> {{streamer.streamViews}}</p>
@@ -85,7 +85,7 @@
                   </md-button>
                   <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)" ng-disabled="!streamer.isValidUser">
                     <md-tooltip md-direction="bottom">Streaming</md-tooltip>
-                    <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
+                    <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming, streamer.isValidUser)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -99,8 +99,8 @@
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
-                    <span class="md-subheader">{{::streamer.language}}</span>
-                    <span class="md-subheader">
+                    <span class="md-subheader white-background">{{::streamer.language}}</span>
+                    <span class="md-subheader white-background">
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Game:</b> {{::streamer.game}} <b>(@ {{::streamer.fps}} FPS)</b></p>
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Now Watching:</b> {{streamer.viewers}}</p>
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Total Views:</b> {{streamer.streamViews}}</p>
@@ -129,7 +129,7 @@
                   </md-button>
                   <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)" ng-disabled="!streamer.isValidUser">
                     <md-tooltip md-direction="bottom">Streaming</md-tooltip>
-                    <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
+                    <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming, streamer.isValidUser)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -143,8 +143,8 @@
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
-                    <span class="md-subheader">{{::streamer.language}}</span>
-                    <span class="md-subheader">
+                    <span class="md-subheader white-background">{{::streamer.language}}</span>
+                    <span class="md-subheader white-background">
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Game:</b> {{::streamer.game}} <b>(@ {{::streamer.fps}} FPS)</b></p>
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Now Watching:</b> {{streamer.viewers}}</p>
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Total Views:</b> {{streamer.streamViews}}</p>
@@ -173,7 +173,7 @@
                   </md-button>
                   <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)" ng-disabled="!streamer.isValidUser">
                     <md-tooltip md-direction="bottom">Streaming</md-tooltip>
-                    <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
+                    <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming, streamer.isValidUser)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>
@@ -196,8 +196,8 @@
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
-                    <span class="md-subheader">{{::streamer.language}}</span>
-                    <span class="md-subheader">
+                    <span class="md-subheader white-background">{{::streamer.language}}</span>
+                    <span class="md-subheader white-background">
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Game:</b> {{::streamer.game}} <b>(@ {{::streamer.fps}} FPS)</b></p>
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Now Watching:</b> {{streamer.viewers}}</p>
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Total Views:</b> {{streamer.streamViews}}</p>
@@ -226,7 +226,7 @@
                   </md-button>
                   <md-button class="md-icon-button" aria-label="now streaming" ng-click="onCardClick(streamer)" ng-disabled="!streamer.isValidUser">
                     <md-tooltip md-direction="bottom">Streaming</md-tooltip>
-                    <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming)"></md-icon>
+                    <md-icon class="mdi mdi-record mdi-24px" ng-style="isStreamingColor(streamer.isStreaming, streamer.isValidUser)"></md-icon>
                   </md-button>
                 </md-card-actions>
               </md-card>

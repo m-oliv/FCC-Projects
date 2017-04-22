@@ -6,6 +6,10 @@
     color: white;
 }
 
+.white-background{
+    background: white;
+}
+
 .loading{
     min-height: 80vh;
     margin: 0 auto;
