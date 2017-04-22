@@ -51,7 +51,7 @@
         <md-tab label="All">
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap layout-align="center">
-              <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in streamers">
+              <md-card flex="30" flex-sm="100" flex-xs="100" flex-gt-lg="20" ng-repeat="streamer in streamers">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
@@ -95,7 +95,7 @@
         <md-tab label="Online">
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap layout-align="center">
-              <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:true}">
+              <md-card flex="30" flex-sm="100" flex-xs="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:true}">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
@@ -139,7 +139,7 @@
         <md-tab label="Offline">
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap layout-align="center">
-              <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:false}">
+              <md-card flex="30" flex-sm="100" flex-xs="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:false}">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
@@ -192,7 +192,7 @@
                   </md-button>
             </div>
             <div class='md-padding' layout="row" layout-wrap layout-align="center">
-              <md-card flex="30" flex-sm="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">
+              <md-card flex="30" flex-sm="100" flex-xs="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">
                 <md-card-title ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>

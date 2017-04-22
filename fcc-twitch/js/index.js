@@ -220,7 +220,9 @@ angular.module('fccTwitch', ['ngMaterial', 'fccTwitch.services.HttpService', 'fc
                             if (userData[j].bio !== null && userData[j].bio !== undefined && userData[j].bio !== '') {
                                 streamerInfo.bio = userData[j].bio;
                             }
-                            streamerInfo.logo = userData[j].logo;
+                            if(userData[j].logo !== null){
+                                streamerInfo.logo = userData[j].logo;
+                            }
                             break;
                         }
                     }
