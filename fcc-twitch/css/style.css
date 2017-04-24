@@ -16,3 +16,8 @@
     position: relative;   
     align-content: center;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+    cursor: hand;
+}

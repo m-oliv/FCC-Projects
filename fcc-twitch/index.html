@@ -52,7 +52,7 @@
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap layout-align="center">
               <md-card flex="30" flex-sm="100" flex-xs="100" flex-gt-lg="20" ng-repeat="streamer in streamers">
-                <md-card-title ng-click="onCardClick(streamer)">
+                <md-card-title class="cursor-pointer" ng-click="onCardClick(streamer)">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
                     <span class="md-subheader white-background">{{::streamer.language}}</span>
@@ -62,19 +62,19 @@
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Total Views:</b> {{streamer.streamViews}}</p>
                       </span>
                   </md-card-title-text>
-                  <md-card-title-media ng-click="onCardClick(streamer)">
+                  <md-card-title-media class="cursor-pointer" ng-click="onCardClick(streamer)">
                     <div class="md-media-md card-media">
                       <img ng-src="{{::streamer.logo}}" alt="streamer logo" ng-style="logoStyle">
                     </div>
                   </md-card-title-media>
                 </md-card-title>
-                <md-card-content ng-click="onCardClick(streamer)">
+                <md-card-content ng-click="onCardClick(streamer)" class="cursor-pointer">
                   <p ng-if="streamer.isStreaming"><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
                   <p ng-if="!streamer.isStreaming && streamer.isValidUser"><b>Offline</b></p>
                   <p ng-if="!streamer.isValidUser"><b>Streamer Not Found</b></p>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end center">
-                  <md-button class="md-icon-button" aria-label="More info" ng-click="onMoreInfoButtonClicked(streamer.name, streamer.bio)"
+                  <md-button class="md-icon-button cursor-pointer" aria-label="More info" ng-click="onMoreInfoButtonClicked(streamer.name, streamer.bio)"
                     ng-disabled="!streamer.isValidUser">
                     <md-tooltip md-direction="bottom">More Information</md-tooltip>
                     <md-icon class="mdi mdi-information-outline mdi-24px"></md-icon>
@@ -96,7 +96,7 @@
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap layout-align="center">
               <md-card flex="30" flex-sm="100" flex-xs="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:true}">
-                <md-card-title ng-click="onCardClick(streamer)">
+                <md-card-title ng-click="onCardClick(streamer)" class="cursor-pointer">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
                     <span class="md-subheader white-background">{{::streamer.language}}</span>
@@ -106,13 +106,13 @@
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Total Views:</b> {{streamer.streamViews}}</p>
                       </span>
                   </md-card-title-text>
-                  <md-card-title-media ng-click="onCardClick(streamer)">
+                  <md-card-title-media ng-click="onCardClick(streamer)" class="cursor-pointer">
                     <div class="md-media-lg card-media">
                       <img ng-src="{{::streamer.logo}}" alt="streamer logo" ng-style="logoStyle">
                     </div>
                   </md-card-title-media>
                 </md-card-title>
-                <md-card-content ng-click="onCardClick(streamer)">
+                <md-card-content ng-click="onCardClick(streamer)" class="cursor-pointer">
                   <p ng-if="streamer.isStreaming"><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
                   <p ng-if="!streamer.isStreaming && streamer.isValidUser"><b>Offline</b></p>
                   <p ng-if="!streamer.isValidUser"><b>Streamer Not Found</b></p>
@@ -140,7 +140,7 @@
           <md-content class="md-padding">
             <div class='md-padding' layout="row" layout-wrap layout-align="center">
               <md-card flex="30" flex-sm="100" flex-xs="100" flex-gt-lg="20" ng-repeat="streamer in streamers | filter: {isStreaming:false}">
-                <md-card-title ng-click="onCardClick(streamer)">
+                <md-card-title ng-click="onCardClick(streamer)" class="cursor-pointer">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
                     <span class="md-subheader white-background">{{::streamer.language}}</span>
@@ -150,13 +150,13 @@
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Total Views:</b> {{streamer.streamViews}}</p>
                       </span>
                   </md-card-title-text>
-                  <md-card-title-media ng-click="onCardClick(streamer)">
+                  <md-card-title-media ng-click="onCardClick(streamer)" class="cursor-pointer">
                     <div class="md-media-lg card-media">
                       <img ng-src="{{::streamer.logo}}" alt="streamer logo" ng-style="logoStyle">
                     </div>
                   </md-card-title-media>
                 </md-card-title>
-                <md-card-content ng-click="onCardClick(streamer)">
+                <md-card-content ng-click="onCardClick(streamer)" class="cursor-pointer">
                   <p ng-if="streamer.isStreaming"><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
                   <p ng-if="!streamer.isStreaming && streamer.isValidUser"><b>Offline</b></p>
                   <p ng-if="!streamer.isValidUser"><b>Streamer Not Found</b></p>
@@ -193,7 +193,7 @@
             </div>
             <div class='md-padding' layout="row" layout-wrap layout-align="center">
               <md-card flex="30" flex-sm="100" flex-xs="100" flex-gt-lg="20" ng-repeat="streamer in searchResults | filter: {isStreaming:false}">
-                <md-card-title ng-click="onCardClick(streamer)">
+                <md-card-title ng-click="onCardClick(streamer)" class="cursor-pointer">
                   <md-card-title-text>
                     <span class="md-headline">{{::streamer.name}}</span>
                     <span class="md-subheader white-background">{{::streamer.language}}</span>
@@ -203,13 +203,13 @@
                         <p ng-if="streamer.isStreaming && streamer.isValidUser"><b>Total Views:</b> {{streamer.streamViews}}</p>
                       </span>
                   </md-card-title-text>
-                  <md-card-title-media ng-click="onCardClick(streamer)">
+                  <md-card-title-media ng-click="onCardClick(streamer)" class="cursor-pointer">
                     <div class="md-media-lg card-media">
                       <img ng-src="{{::streamer.logo}}" alt="streamer logo" ng-style="logoStyle">
                     </div>
                   </md-card-title-media>
                 </md-card-title>
-                <md-card-content ng-click="onCardClick(streamer)">
+                <md-card-content ng-click="onCardClick(streamer)" class="cursor-pointer">
                   <p ng-if="streamer.isStreaming"><b>Now Streaming:</b> {{::streamer.nowStreaming}}</p>
                   <p ng-if="!streamer.isStreaming && streamer.isValidUser"><b>Offline</b></p>
                   <p ng-if="!streamer.isValidUser"><b>Streamer Not Found</b></p>
