@@ -1,8 +1,6 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 "use strict";
-// URL to the API
-var quoteURL = "http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=jsonp&lang=en&jsonp=?";
 
 // temp vars that save info to tweet
 var text = "";
