@@ -10,11 +10,29 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
-
-  <body layout="row" ng-app="myApp" ng-cloak>
-
-  </body>
+<body layout="row" ng-app="fccPomodoro" ng-cloak>
+  <div ng-controller="PomodoroDashboardController" ng-cloak flex="100">
+    <div layout="row" layout-xs="column">
+      <div flex>
+      <md-button class="md-raised">-</md-button>
+      <md-input-container class="md-icon-float md-icon-right md-block">
+        <label>Break length</label>
+        <input ng-model="time.break" type="number" step="1" placeholder="0">
+      </md-input-container>
+      <md-button class="md-raised">+</md-button>
+    </div>
+    <div flex>
+      <md-button class="md-raised">-</md-button>
+      <md-input-container class="md-icon-float md-icon-right md-block">
+        <label>Work length</label>
+        <input ng-model="time.work" type="number" step="1" placeholder="0">
+      </md-input-container>
+      <md-button class="md-raised">+</md-button>
+    </div>
+    </div>
+    <md-button class="md-raised">Start!</md-button>
+    <md-button class="md-raised">Stop!</md-button>
+  </div>
 
   <!--
 Copyright 2016 Google Inc. All Rights Reserved. 
