@@ -13,15 +13,19 @@ angular.module('fccPomodoro', ['ngMaterial'])
     // get the time in hh:mm:ss
     function getTimeElements(timer) {
       return {
-        hours: Math.floor(timer / 3600),
-        minutes: Math.floor(timer % 3600 / 60),
-        seconds: Math.floor(timer % 3600 % 3600)
+        hours: Math.floor(Number(timer) / 3600),
+        minutes: Math.floor(Number(timer) % 3600 / 60),
+        seconds: Math.floor(Number(timer) % 3600 % 3600)
       }
     }
 
     // work timer
     function updateWorkTimer(timerWork) {
-      $scope.timerWork = Number($scope.time.work) * 60;
+      var timerElements = getTimeElements(timerWork);
+      $scope.timerWork = timerElements.hours, timerElements.minutes, timerElements.seconds;
+      if (--$scope.timerWork < 0) {
+        timer = timerElements.hours;
+      }
     }
 
     // break timer
@@ -33,12 +37,12 @@ angular.module('fccPomodoro', ['ngMaterial'])
     $scope.onStartTimerClick = function (timer, type) {
       if (type === 0) {
         // work timer
-        workPromise = $interval(updateWorkTimer, 
-        1000);
+        workPromise = $interval(updateWorkTimer,
+          1000);
       } else if (type === 1) {
         // break timer
-        breakPromise = $interval(updateBreakTimer, 
-        1000);
+        breakPromise = $interval(updateBreakTimer,
+          1000);
       }
 
     }
@@ -51,7 +55,7 @@ angular.module('fccPomodoro', ['ngMaterial'])
       } else if (type === 1) {
         // stop break timer
         $interval.cancel(breakPromise);
-      }else{
+      } else {
         // stop everything if the condition fails
         $interval.cancel(workPromise);
         $interval.cancel(breakPromise);
