@@ -19,21 +19,25 @@ angular.module('fccPomodoro', ['ngMaterial'])
       }
     }
 
+    // work timer
+    function updateWorkTimer(timerWork) {
+      $scope.timerWork = Number($scope.time.work) * 60;
+    }
+
+    // break timer
+    function updateBreakTimer(timerWork) {
+      $scope.timerBreak = Number($scope.time.break) * 60;
+    }
+
     // process timer
     $scope.onStartTimerClick = function (timer, type) {
       if (type === 0) {
         // work timer
-        workPromise = $interval(function (timerWork) {
-          $scope.timerWork = Number($scope.time.work) * 60;
-
-        }, 
+        workPromise = $interval(updateWorkTimer, 
         1000);
       } else if (type === 1) {
         // break timer
-        breakPromise = $interval(function (timerWork) {
-          $scope.timerBreak = Number($scope.time.break) * 60;
-
-        }, 
+        breakPromise = $interval(updateBreakTimer, 
         1000);
       }
 
