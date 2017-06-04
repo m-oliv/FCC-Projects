@@ -8,7 +8,7 @@ var author = "";
 
 // get the quote and the author
 function getQuoteAndAuthor(dataString) {
-    var data = JSON.parse(dataString);
+    var data = dataString;
 
     // pass the info to the corresponding html
     $(".text").text(data.quote);
